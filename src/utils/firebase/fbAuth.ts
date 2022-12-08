@@ -14,7 +14,7 @@ const RegisterInFirebase = (email:string, password:string)=>{
       alert('회원가입이 완료되었습니다.')
       resolve(user);
     }).catch((error:SystemError) => {
-      alert(error.message);
+      alert('안됨');
     });
   })
 }

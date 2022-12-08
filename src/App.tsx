@@ -1,24 +1,23 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-
+import AxiosApi from "./utils/AxiosApi";
+import { analytics, firebaseApp } from "./utils/firebase/fbInit";
 function App() {
+  const myData = async () => {
+    const result = await AxiosApi("하이트");
+    console.log(result.data.response.body.items.item);
+  };
+  console.log(analytics);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React hihi
-        </a>
-      </header>
+      <button onClick={myData}>hihi</button>
+      <span
+        onClick={() => {
+          console.log(window.confirm("1이 맞습니까?"));
+        }}
+      >
+        안녕하세요
+      </span>
     </div>
   );
 }
