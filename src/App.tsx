@@ -5,9 +5,10 @@ import { analytics, firebaseApp } from "./utils/firebase/fbInit";
 function App() {
   const myData = async () => {
     const result = await AxiosApi("하이트");
-    console.log(result.data.response.body.items.item);
+    console.log(result);
   };
-  console.log(analytics);
+  // console.log(analytics);
+  const firebaseLogin = analytics;
   return (
     <div className="App">
       <button onClick={myData}>hihi</button>
