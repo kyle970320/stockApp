@@ -13,7 +13,7 @@ const useLogin = () => {
           window.localStorage.setItem("userUID", user.uid);
           alert("로그인이 성공하였습니다. 메인 페이지로 이동합니다.");
           console.log(user);
-          // navigate("/");
+          navigate("/main");
           resolve(user);
         })
         .catch((error) => {
