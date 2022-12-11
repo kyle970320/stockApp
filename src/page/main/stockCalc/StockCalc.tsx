@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import useDebounce from "../../../hooks/useDebounce";
 import AxiosApiItemQuery from "../../../utils/axios/AxiosApiItemQuery";
 import AxiosApiLikeItemQuery from "../../../utils/axios/AxiosApiLikeItemQuery";
@@ -8,6 +9,7 @@ interface stockData {
   mrktCtg: string;
   hipr: string;
   lopr: string;
+  isinCd: string;
 }
 const StockCalc = () => {
   const [stateStockName, setStockName] = useState<string>("");
@@ -43,9 +45,9 @@ const StockCalc = () => {
 
   const enterKeyDownHandler = async () => {
     const result = await AxiosApiItemQuery(stateSearchValue, updateDate);
-    const resultItem = result.data.response.body.items.item;
-    setStockList(resultItem[0]);
+    const resultItem = result.data.response.body?.items.item;
     setRecommandWord([]);
+    setStockList(resultItem[0]);
   };
   console.log(stateStockList);
 
@@ -66,6 +68,7 @@ const StockCalc = () => {
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               enterKeyDownHandler();
+              console.log(stateRecommandWord);
             }
           }}
         />
@@ -90,10 +93,13 @@ const StockCalc = () => {
       </ul>
       {stateStockList && (
         <div>
-          <p>{stateStockList.itmsNm}</p>
-          <p>{stateStockList.mrktCtg}</p>
-          <p>{stateStockList.hipr}</p>
-          <p>{stateStockList.lopr}</p>
+          <p>종목명 : {stateStockList.itmsNm}</p>
+          <p>시장 구분 : {stateStockList.mrktCtg}</p>
+          <p>고가 : {stateStockList.hipr}</p>
+          <p>저가 : {stateStockList.lopr}</p>
+          <Link to={`/calc/:${stateStockList.isinCd}`} state={stateStockList}>
+            {stateStockList.itmsNm}더 자세히 보고 매매하기
+          </Link>
         </div>
       )}
     </React.Fragment>
