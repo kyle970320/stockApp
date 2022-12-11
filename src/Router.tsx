@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import Login from "./page/auth/Login";
 import Sign from "./page/auth/Sign";
-import StockCalc from "./page/main/stockCalc/StockCalc";
-import StockCalcDetail from "./page/main/stockCalc/StockCalcDetail";
+import StockList from "./page/main/stockList/StockList";
+import StockListDetail from "./page/main/stockList/StockListDetail";
 import StockMain from "./page/main/stockMain/StockMain";
 
 const Router = () => {
@@ -15,8 +15,8 @@ const Router = () => {
           <Route path="/" element={<Login />}></Route>
           <Route path="/sign" element={<Sign />}></Route>
           <Route path="/main" element={<StockMain />}></Route>
-          <Route path="/calc" element={<StockCalc />}></Route>
-          <Route path="/calc/:stockid" element={<StockCalcDetail />}></Route>
+          <Route path="/calc" element={<StockList />}></Route>
+          <Route path="/calc/:stockid" element={<StockListDetail />}></Route>
         </Routes>
       </RecoilRoot>
     </React.Fragment>

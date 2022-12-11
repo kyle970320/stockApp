@@ -11,7 +11,7 @@ interface stockData {
   lopr: string;
   isinCd: string;
 }
-const StockCalc = () => {
+const StockList = () => {
   const [stateStockName, setStockName] = useState<string>("");
   const [stateStockList, setStockList] = useState<stockData>();
   const [stateSearchValue, setSearchValue] = useState<string>("");
@@ -106,4 +106,4 @@ const StockCalc = () => {
   );
 };
 
-export default StockCalc;
+export default StockList;

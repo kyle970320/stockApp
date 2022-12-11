@@ -7,7 +7,7 @@ interface stockData {
   lopr: string;
   isinCd: string;
 }
-const StockCalcDetail = () => {
+const StockListDetail = () => {
   const stockList = useLocation().state;
 
   return (
@@ -21,4 +21,4 @@ const StockCalcDetail = () => {
   );
 };
 
-export default StockCalcDetail;
+export default StockListDetail;
