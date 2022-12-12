@@ -15,8 +15,8 @@ const Router = () => {
           <Route path="/" element={<Login />}></Route>
           <Route path="/sign" element={<Sign />}></Route>
           <Route path="/main" element={<StockMain />}></Route>
-          <Route path="/calc" element={<StockList />}></Route>
-          <Route path="/calc/:stockid" element={<StockListDetail />}></Route>
+          <Route path="/list" element={<StockList />}></Route>
+          <Route path="/list/:stockid" element={<StockListDetail />}></Route>
         </Routes>
       </RecoilRoot>
     </React.Fragment>

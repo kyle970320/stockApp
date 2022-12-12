@@ -1,14 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import StockMainCalc from "./StockMainCalc";
+import StockMainMyCapital from "./StockMainMyCapital";
+import StockMainMyList from "./StockMainMyList";
 
 const StockMain = () => {
   return (
-    <div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <Link to={"/calc"}>자세히보기 이동</Link>
-    </div>
+    <section>
+      <StockMainMyCapital />
+      <br />
+      <br />
+      <StockMainCalc />
+      <br />
+      <br />
+      <StockMainMyList />
+      <br />
+      <br />
+      <Link to={"/list"}>자세히보기 이동</Link>
+    </section>
   );
 };
 

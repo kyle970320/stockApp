@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import AxiosApiLikeItemQuery from "./utils/axios/AxiosApiLikeItemQuery";
-import { analytics, firebaseApp } from "./utils/firebase/fbInit";
+import { AxiosApiLikeItemQuery } from "./utils/axios/AxiosApi";
+import { analytics } from "./utils/firebase/fbInit";
 function App() {
   const myData = async () => {
     const result = await AxiosApiLikeItemQuery("하이트", "20221201");
@@ -9,6 +9,7 @@ function App() {
   };
   // console.log(analytics);
   const firebaseLogin = analytics;
+
   return (
     <div className="App">
       <button onClick={myData}>hihi</button>
