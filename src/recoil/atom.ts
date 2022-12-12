@@ -1,6 +1,13 @@
 import {atom} from 'recoil'
-const counter = atom({
-  key: 'myCounter',
-  default: 0,
+interface stockData {
+  itmsNm: string;
+  mrktCtg: string;
+  hipr: string;
+  lopr: string;
+  isinCd: string;
+}
+const recommandWord = atom({
+  key: 'recommandWord',
+  default: <stockData>{},
 });
-export {counter}
+export {recommandWord}
