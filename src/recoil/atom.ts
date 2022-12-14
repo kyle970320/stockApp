@@ -10,4 +10,9 @@ const recommandWord = atom({
   key: 'recommandWord',
   default: <stockData>{},
 });
-export {recommandWord}
+const rerenderList = atom({
+  key : 'rerenderList',
+  default: 0,
+})
+
+export {recommandWord, rerenderList}
