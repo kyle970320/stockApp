@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import useRegister from "../../hooks/useRegister";
-import { RegisterInFirebase } from "../../utils/firebase/fbAuth";
+import { RegisterInFirebase } from "../../service/firebase/fbAuth";
 
 const Login = () => {
   const [stateSignEmail, setSignEmail] = useState<string>("");

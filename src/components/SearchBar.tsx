@@ -5,7 +5,7 @@ import { recommandWord } from "../recoil/atom";
 import {
   AxiosApiItemQuery,
   AxiosApiLikeItemQuery,
-} from "../utils/axios/AxiosApi";
+} from "../service/axios/AxiosApi";
 const SearchBar = () => {
   const [stateRecoilStockList, setRecoilStockList] =
     useRecoilState(recommandWord);

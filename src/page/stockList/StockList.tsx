@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import SearchBar from "../../../components/SearchBar";
-import { recommandWord } from "../../../recoil/atom";
+import SearchBar from "../../components/SearchBar";
+import { recommandWord } from "../../recoil/atom";
 
 const StockList = () => {
   const [stateRecoilStockList] = useRecoilState(recommandWord);
@@ -16,7 +16,7 @@ const StockList = () => {
           <p>고가 : {stateRecoilStockList.hipr}</p>
           <p>저가 : {stateRecoilStockList.lopr}</p>
           <Link
-            to={`/list/${stateRecoilStockList.isinCd}`}
+            to={`/stocklist/:${stateRecoilStockList.isinCd}`}
             state={stateRecoilStockList}
           >
             {stateRecoilStockList.itmsNm} 더 자세히 보기

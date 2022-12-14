@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import { AxiosApiLikeItemQuery } from "./utils/axios/AxiosApi";
-import { analytics } from "./utils/firebase/fbInit";
+import { AxiosApiLikeItemQuery } from "./service/axios/AxiosApi";
+import { analytics } from "./service/firebase/fbInit";
 function App() {
   const myData = async () => {
     const result = await AxiosApiLikeItemQuery("하이트", "20221201");
