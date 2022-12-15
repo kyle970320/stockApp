@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import SearchBar from "../../components/SearchBar";
 import { recommandWord, rerenderList } from "../../recoil/atom";
 import {

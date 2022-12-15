@@ -1,0 +1,118 @@
+.section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+}
+.section > div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(-15px 15px 10px rgba(0, 0, 0, 0.2));
+}
+.section > div figure {
+  width: 50%;
+  background: linear-gradient(45deg, rgb(88, 57, 191) 0%, rgb(97, 69, 193) 10%, rgb(98, 72, 190) 25%, rgb(105, 80, 190) 39%, rgb(110, 88, 182) 52%, rgb(120, 100, 187) 64%, rgb(128, 110, 189) 78%, rgb(136, 122, 181) 92%);
+  border-radius: 20px 0 0 20px;
+}
+.section > div figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-position: center center;
+  mix-blend-mode: luminosity;
+  border-radius: 20px 0 0 20px;
+}
+.section > div > div {
+  padding: 50px;
+  background-color: white;
+  border-radius: 0 20px 20px 0;
+}
+.section > div > div p {
+  margin-bottom: 15px;
+  color: #544875;
+  font-size: 2vw;
+}
+@media screen and (max-width: 900px) {
+  .section > div > div p {
+    font-size: 18px;
+  }
+}
+.section > div > div p:first-child {
+  font-weight: 800;
+}
+.section > div > div p:nth-child(2) {
+  font-weight: 600;
+}
+.section > div > div h2 {
+  margin: 1rem 0;
+  text-align: center;
+  color: #544875;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: 5px solid rgba(84, 72, 117, 0.3);
+  padding: 5px 0;
+}
+@media screen and (min-height: 900px) {
+  .section > div > div h2 {
+    margin: 5rem 0;
+  }
+}
+.section > div > div h2 span {
+  color: #333;
+  font-weight: 400;
+}
+.section > div > div form {
+  display: flex;
+  flex-direction: column;
+}
+.section > div > div form label {
+  margin-bottom: 5%;
+  font-size: 1.15rem;
+}
+.section > div > div form input {
+  margin-bottom: 5%;
+  border: none;
+  border-bottom: 2.5px solid black;
+  font-size: 1.2rem;
+}
+.section > div > div form input:focus {
+  outline: none;
+  border-bottom: 2.5px solid rgba(84, 72, 117, 0.3);
+}
+.section > div > div form button {
+  width: 70%;
+  height: 40px;
+  margin: 2rem auto;
+  border: none;
+  border: 3px solid #5738c0;
+  background-color: #5738c0;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.25s, color 0.25s;
+}
+.section > div > div form button:hover {
+  background-color: white;
+  color: #5738c0;
+}
+.section > div > div form a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 70%;
+  height: 40px;
+  text-decoration: none;
+  color: #5738c0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  transition: background-color 0.25s, color 0.25s;
+}
+.section > div > div form a:hover {
+  background-color: #5738c0;
+  color: white;
+}
