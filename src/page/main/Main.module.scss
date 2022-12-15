@@ -1,0 +1,33 @@
+.mainSection {
+  display: flex;
+  padding: 2rem;
+  overflow: hidden;
+  > div:nth-child(1) {
+    width: 70%;
+  }
+  > div:nth-child(2) {
+    width: 30%;
+  }
+}
+.mainList {
+  width: 78%;
+  overflow-y: scroll;
+  background-color: white;
+  border-radius: 15px;
+  ul {
+    width: 100%;
+    display: flex;
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: calc(100% / 5);
+      padding: 1rem;
+      font-size: 0.8rem;
+      border-radius: 20px;
+    }
+    &:nth-of-type(2n + 1) {
+      background-color: rgba(#d9cff4, 0.5);
+    }
+  }
+}

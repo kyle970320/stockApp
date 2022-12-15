@@ -1,0 +1,34 @@
+.mainSection {
+  display: flex;
+  padding: 2rem;
+  overflow: hidden;
+}
+.mainSection > div:nth-child(1) {
+  width: 70%;
+}
+.mainSection > div:nth-child(2) {
+  width: 30%;
+}
+
+.mainList {
+  width: 78%;
+  overflow-y: scroll;
+  background-color: white;
+  border-radius: 15px;
+}
+.mainList ul {
+  width: 100%;
+  display: flex;
+}
+.mainList ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  padding: 1rem;
+  font-size: 0.8rem;
+  border-radius: 20px;
+}
+.mainList ul:nth-of-type(2n + 1) {
+  background-color: rgba(217, 207, 244, 0.5);
+}

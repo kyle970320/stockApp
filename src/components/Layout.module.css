@@ -1,0 +1,75 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+.header div {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 90%;
+  height: 60px;
+  padding: 0 15px;
+  background-color: white;
+  border-radius: 15px;
+}
+.header div p {
+  font-weight: 600;
+  margin-right: 15px;
+}
+.header div button {
+  height: 40px;
+  border: none;
+  border: 3px solid #5738c0;
+  background-color: #5738c0;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.25s, color 0.25s;
+}
+.header div button:hover {
+  background-color: white;
+  color: #5738c0;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 90%;
+  height: calc(100vh - 120px);
+}
+.main aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 20%;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+}
+.main aside a {
+  display: flex;
+  align-items: center;
+  padding: 30px 10px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #5738c0;
+  border-radius: 15px;
+  transition: background-color 0.25s, color 0.25s;
+}
+.main aside a:hover {
+  background-color: #5738c0;
+}
+.main aside a svg {
+  margin-right: 1rem;
+  font-size: 1.5rem;
+}
+.main section {
+  width: 78%;
+  background-color: white;
+  border-radius: 15px;
+}

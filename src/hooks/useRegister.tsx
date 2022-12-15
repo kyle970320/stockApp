@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, getFirestore } from "firebase/firestore";
-
+const errorMaessage = [["email-already-in-use", "이미 가입된 이메일입니다"]];
 const useRegister = () => {
   const navigate = useNavigate();
   const RegisterInFirebase = (
@@ -28,7 +28,11 @@ const useRegister = () => {
           resolve(user);
         })
         .catch((error) => {
-          alert(error.message);
+          errorMaessage.filter((el) => {
+            if (error.message.includes(el[0])) {
+              return alert(el[1]);
+            }
+          });
         });
     });
   };

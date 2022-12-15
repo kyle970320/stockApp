@@ -76,7 +76,7 @@
           font-size: 1.15rem;
         } //label
         input {
-          margin-bottom: 5%;
+          margin-bottom: 2rem;
           border: none;
           border-bottom: 2.5px solid black;
           font-size: 1.2rem;
@@ -94,6 +94,7 @@
           background-color: #5738c0;
           color: white;
           font-size: 1.2rem;
+          font-weight: 700;
           cursor: pointer;
           transition: background-color 0.25s, color 0.25s;
           &:hover {

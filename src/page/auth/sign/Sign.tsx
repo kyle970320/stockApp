@@ -1,7 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
 import useRegister from "../../../hooks/useRegister";
+import useValidate from "../../../hooks/useValidate";
 import { RegisterInFirebase } from "../../../service/firebase/fbAuth";
 import styles from "./Sign.module.css";
 const Login = () => {
@@ -10,6 +11,16 @@ const Login = () => {
   const [stateSignPassword, changePassword, setSignPassword] = useInput("");
   const [stateFirstName, changeFirstName, setFirstName] = useInput("");
   const [stateLastName, changeLastName, setSignLastName] = useInput("");
+  const {
+    validateUser: lockButton,
+    validateEmail: validateEmail,
+    validatePassword: validatePassword,
+    emailError: stateEmailError,
+    passwordError: statePasswordError,
+    isAbled: stateDisabled,
+  } = useValidate();
+  // const emailRef = useRef<HTMLInputElement>(null);
+  // const passwordRef = useRef<HTMLInputElement>(null);
   const handleSign = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     RegisterInFirebase(
@@ -23,6 +34,18 @@ const Login = () => {
     setFirstName("");
     setSignLastName("");
   };
+  useEffect(() => {
+    lockButton(
+      stateSignEmail,
+      stateSignPassword,
+      stateFirstName,
+      stateLastName
+    );
+
+    validateEmail(stateSignEmail);
+
+    validatePassword(stateSignPassword);
+  });
   return (
     <form className={styles.form}>
       <label htmlFor="signEmail">Email</label>
@@ -35,14 +58,30 @@ const Login = () => {
           changeEmail(e);
         }}
       />
+      <p className={styles.error}>
+        {stateEmailError && stateSignEmail && stateEmailError}
+      </p>
       <label htmlFor="signPassword">Password</label>
       <input
         id="signPassword"
         type="password"
-        placeholder="비밀번호를을 입력하세요"
+        placeholder="8자리 이상의 비밀번호를을 입력하세요"
         value={stateSignPassword}
         onChange={(e) => {
           changePassword(e);
+        }}
+      />
+      <p className={styles.error}>
+        {statePasswordError && stateSignPassword && statePasswordError}
+      </p>
+      <label htmlFor="signLastName">Last Name</label>
+      <input
+        id="signLastName"
+        type="text"
+        placeholder="성"
+        value={stateLastName}
+        onChange={(e) => {
+          changeLastName(e);
         }}
       />
       <label htmlFor="signFirstName">First Name</label>
@@ -55,18 +94,10 @@ const Login = () => {
           changeFirstName(e);
         }}
       />
-      <label htmlFor="signLastName">Last Name</label>
-      <input
-        id="signLastName"
-        type="text"
-        placeholder="성"
-        value={stateLastName}
-        onChange={(e) => {
-          changeLastName(e);
-        }}
-      />
-      <button onClick={handleSign}>회원가입하기</button>
-      <p>
+      <button disabled={stateDisabled} onClick={handleSign}>
+        Sign!
+      </button>
+      <p className={styles.login}>
         If you are already registered? <Link to="/">Go to login</Link>
       </p>
     </form>

@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  padding: 2rem;
+  padding: 3rem 2rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -11,4 +11,61 @@
   height: 80%;
   background-color: white;
   border-radius: 20px;
+  font-family: "Raleway", sans-serif;
+}
+.form label {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #544875;
+}
+.form input {
+  margin-bottom: 1rem;
+  border: none;
+  border-bottom: 2.5px solid black;
+  font-size: 1.1rem;
+}
+.form input:focus {
+  outline: none;
+  border-bottom: 2.5px solid rgba(84, 72, 117, 0.3);
+}
+.form button {
+  width: 70%;
+  height: 40px;
+  margin: 2rem auto;
+  border: none;
+  border: 3px solid #5738c0;
+  background-color: #5738c0;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.25s, color 0.25s;
+}
+.form button:hover {
+  background-color: white;
+  color: #5738c0;
+}
+.form button:disabled {
+  background-color: #666;
+  color: #333;
+  border: 3px solid black;
+  cursor: default;
+}
+.form p {
+  height: 30px;
+}
+.form p.error {
+  font-weight: 600;
+  color: red;
+}
+.form p.login {
+  text-align: center;
+  font-weight: 300;
+}
+.form p.login a {
+  margin-left: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #5738c0;
 }

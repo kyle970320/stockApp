@@ -3,25 +3,30 @@ import { useRecoilValue } from "recoil";
 import { getMyStocks } from "../../service/getStore";
 import { rerenderList } from "../../recoil/atom";
 import useCallStockList from "../../hooks/useCallStockList";
-
+import styles from "./Main.module.css";
 const MainList = () => {
   const [stateStockList] = useCallStockList(false);
   return (
-    <div>
-      내가 산 목록입니다.
+    <div className={styles.mainList}>
+      <ul>
+        <li>종목명</li>
+        <li>누적매수량</li>
+        <li>누적매도량</li>
+        <li>최근 판매가격</li>
+        <li>평균 구매단가</li>
+      </ul>
       {stateStockList &&
         stateStockList.map((listItem) => {
           return (
-            <React.Fragment key={listItem.stockName}>
-              <p>종목명 : {listItem.stockName}</p>
-              <p>누적 매매량 : {listItem.buyingCount}</p>
-              <p>누적 매도량 : {listItem.sellCount}</p>
-              <p>최근 판매 가격 : {listItem.prevSell}</p>
-              <p>평균 구매 단가 : {listItem.buyingAverage}</p>
-            </React.Fragment>
+            <ul key={listItem.stockName}>
+              <li>{listItem.stockName}</li>
+              <li>{listItem.buyingCount}</li>
+              <li>{listItem.sellCount}</li>
+              <li>{listItem.prevSell}</li>
+              <li>{listItem.buyingAverage}</li>
+            </ul>
           );
         })}
-      <button>안녕하세요</button>
     </div>
   );
 };

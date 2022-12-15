@@ -1,7 +1,6 @@
 import { collection, doc, getDoc, setDoc, getDocs, getFirestore, Firestore } from "firebase/firestore";
 import { firebase, fireStore } from "./firebase/fbInit";
 
-const topLevelCol = window.localStorage.getItem('userUID');
 
 const AddMyStock = async(
   stockName:string,
@@ -9,6 +8,7 @@ const AddMyStock = async(
   stockCount:string|undefined,
   stockSellOrBuying:string|undefined,
   )=>{
+    const topLevelCol = window.localStorage.getItem('userUID');
     const db = getFirestore();
     const docRef = doc(db, `${topLevelCol}`, `${stockName}`);
     const docSnap = await getDoc(docRef);
@@ -77,6 +77,7 @@ const AddMyStock = async(
 
 //컬렉션 전체 문서 가져오기
 const getMyStocks = async()=>{
+  const topLevelCol = window.localStorage.getItem('userUID');
   const db = getFirestore();
   let result:any[] = [];
   const querySnapshot = await getDocs(collection(db, `${topLevelCol}`));
@@ -86,6 +87,7 @@ return result;
 
 // 단일문서 가져오기
 const getMyOnlyOneStock = async()=>{
+  const topLevelCol = window.localStorage.getItem('userUID');
   const db = getFirestore();
   const docRef = doc(db, `${topLevelCol}`, "삼성화재");
   const docSnap = await getDoc(docRef);
