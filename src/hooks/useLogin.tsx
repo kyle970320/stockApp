@@ -1,6 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+const errorMaessage = [
+  ["wrong-password", "비밀번호를 잘못 입력하셨습니다"],
+  ["invalid-email", "이메일 형식이 아닙니다"],
+  ["user-not-found", "가입되지 않은 이메일입니다"],
+];
 
 const useLogin = () => {
   const navigate = useNavigate();
@@ -13,11 +18,15 @@ const useLogin = () => {
           window.localStorage.setItem("userUID", user.uid);
           alert("로그인이 성공하였습니다. 메인 페이지로 이동합니다.");
           console.log(user);
-          navigate("/main");
+          navigate("/mystock/main");
           resolve(user);
         })
         .catch((error) => {
-          alert(error.message);
+          errorMaessage.filter((el) => {
+            if (error.message.includes(el[0])) {
+              return alert(el[1]);
+            }
+          });
         });
     });
   };
@@ -36,7 +45,7 @@ const useLogin = () => {
         });
     });
   };
-  return [LoginFirebase, LogoutFirebase];
+  return { Login: LoginFirebase, Logout: LogoutFirebase };
 };
 
 export default useLogin;

@@ -12,49 +12,66 @@ const AddMyStock = async(
     const db = getFirestore();
     const docRef = doc(db, `${topLevelCol}`, `${stockName}`);
     const docSnap = await getDoc(docRef);
-    const averageData = Number(docSnap.data()?.average);
+    const buyingAverageData = Number(docSnap.data()?.buyingAverage);
+    const sellAverageData = Number(docSnap.data()?.sellAverage);
     const buyingCountData = Number(docSnap.data()?.buyingCount);
     const sellCountData = Number(docSnap.data()?.sellCount);
     const totalPriceData:number = Number(docSnap.data()?.total);
-    let averagePrice:number = Number(docSnap.data()?.average);
+    const allBuyingPriceData:number = Number(docSnap.data()?.누적구매액);
+    const allSellPriceData:number = Number(docSnap.data()?.누적판매액);
+    let buyingAveragePrice:number = Number(docSnap.data()?.buyingAverage);
     let buyingCountReduce:number = Number(docSnap.data()?.buyingCount);
+    let sellAveragePrice = Number(docSnap.data()?.sellAverage);
     let sellCountReduce:number = Number(docSnap.data()?.sellCount);
     let prevSellPrice:number = Number(docSnap.data()?.prevSell);
     let totalPrice:number = Number(docSnap.data()?.total);
+    let allBuyingPrice:number = Number(docSnap.data()?.누적구매액);
+    let allSellPrice:number = Number(docSnap.data()?.누적판매액);
     if (docSnap.exists()) {
       if(stockSellOrBuying === 'buying'){
-        const prevStockValue = averageData * buyingCountData;
-        const nextStockValue = Number(stockPrice) * Number(stockCount);
-        averagePrice = Math.ceil((prevStockValue + nextStockValue) / (buyingCountData + Number(stockCount)));
+        const prevBuyingValue = buyingAverageData * buyingCountData;
+        const nextBuyingValue = Number(stockPrice) * Number(stockCount);
+        buyingAveragePrice = Math.ceil((prevBuyingValue + nextBuyingValue) / (buyingCountData + Number(stockCount)));
         buyingCountReduce = buyingCountData + Number(stockCount);
-        totalPrice = -(averagePrice*buyingCountReduce)
+        allBuyingPrice = -(buyingAveragePrice*buyingCountReduce);
+        totalPrice = allBuyingPriceData + allSellPriceData - nextBuyingValue;
       } else if(stockSellOrBuying === 'sell'){
         if(buyingCountData >= (sellCountData + Number(stockCount))){
+          const prevSellValue = sellAverageData * sellCountData;
+          const nextSellValue = Number(stockPrice) * Number(stockCount);
+          sellAveragePrice = Math.ceil((prevSellValue + nextSellValue) / (sellCountData + Number(stockCount)));
           sellCountReduce = sellCountData + Number(stockCount);
           prevSellPrice = Number(stockPrice);
-          totalPrice = totalPriceData + prevSellPrice * sellCountReduce
+          allSellPrice = sellAveragePrice * sellCountReduce;
+          totalPrice = allBuyingPriceData + allSellPriceData + nextSellValue;
         } else{
-          return alert('보유수량 보다 많은 양을 매도하실 수 없습니다')
+          return alert('보유수량 보다 많은 양을 매도하실 수 없습니다');
         }
       }
     } else {
       if(stockSellOrBuying === 'buying'){
-        averagePrice = Math.ceil(Number(stockPrice) * Number(stockCount) / Number(stockCount));
+        buyingAveragePrice = Math.ceil(Number(stockPrice) * Number(stockCount) / Number(stockCount));
         buyingCountReduce = Number(stockCount);
         sellCountReduce = 0;
         prevSellPrice = 0;
-        totalPrice = -(averagePrice*buyingCountReduce)
+        sellAveragePrice = 0;
+        totalPrice = -(buyingAveragePrice*buyingCountReduce);
+        allBuyingPrice = totalPrice;
+        allSellPrice = 0;
       }else if(stockSellOrBuying === 'sell'){
        return alert('보유량이 없습니다');
       }
     }
   await setDoc(doc(db, `${topLevelCol}`, `${stockName}`), {
     stockName,
-    average : averagePrice,
+    buyingAverage : buyingAveragePrice,
     buyingCount : buyingCountReduce,
+    sellAverage: sellAveragePrice,
     sellCount : sellCountReduce,
     prevSell : prevSellPrice, 
     total: totalPrice,
+    누적구매액: Math.abs(allBuyingPrice),
+    누적판매액: allSellPrice,
   });
 }
 
@@ -64,7 +81,7 @@ const getMyStocks = async()=>{
   let result:any[] = [];
   const querySnapshot = await getDocs(collection(db, `${topLevelCol}`));
   querySnapshot.docs.forEach((doc) => {result.push(doc.data())});
-return result
+return result;
 }
 
 // 단일문서 가져오기
