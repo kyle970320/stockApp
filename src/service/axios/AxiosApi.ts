@@ -43,8 +43,6 @@ const AxiosApiLikeDateQuery = async (word: string, date: string) => {
   return apiData;
 };
 const AxiosApiNews = async (utf8: string) => {
-  const id = process.env.REACT_APP_NAVER_ID;
-  const password = process.env.REACT_APP_NAVER_KEY;
   const apiData = await axios.get(
     `/api/v1/search/news.json?query=${utf8}&display=15&start=1&sort=date`,
     {
