@@ -20,7 +20,7 @@ const StockNews = () => {
     const newsData = async () => {
       setNewsLoading(true);
       if (debounce.length > 0) {
-        let encodeUTF = encodeURI(stateNewsInput);
+        let encodeUTF = await encodeURI(stateNewsInput);
         const stockNewsData = await AxiosApiNews(encodeUTF);
         setStockNews(stockNewsData.data.items);
       }
