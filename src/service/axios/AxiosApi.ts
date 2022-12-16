@@ -50,8 +50,8 @@ const AxiosApiNews = async (utf8: string) => {
     {
       headers: {
         "Content-Type": "application/json",
-        "X-Naver-Client-Id": "ZeA7avlaUaZEWPS8ANP0",
-        "X-Naver-Client-Secret": "zAeGCWaHni",
+        "X-Naver-Client-Id": process.env.REACT_APP_NAVER_ID,
+        "X-Naver-Client-Secret": process.env.REACT_APP_NAVER_KEY,
       },
     }
   );
