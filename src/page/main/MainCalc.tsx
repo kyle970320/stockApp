@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import SearchBar from "../../components/SearchBar";
 import { recommandWord, rerenderList } from "../../recoil/atom";
+import styles from "./Main.module.css";
 import {
   AddMyStock,
   getMyOnlyOneStock,
@@ -16,76 +17,68 @@ const MainCalc = () => {
   const countRef = useRef<HTMLInputElement>(null);
   const sellOrBuyingRef = useRef<HTMLSelectElement>(null);
 
-  const handleClearInput = () => {
-    if (priceRef.current && countRef.current) {
-      priceRef.current.value = "";
-      countRef.current.value = "";
-    }
-  };
-
   const handleSaveButton = async () => {
     if (priceRef.current?.value && countRef.current?.value) {
-      console.log(priceRef.current.value);
       if (
         Number(priceRef.current.value) <= Number(stateRecoilStockList.hipr) &&
         Number(priceRef.current.value) >= Number(stateRecoilStockList.lopr)
       ) {
-        await AddMyStock(
-          stateRecoilStockList.itmsNm,
-          priceRef.current?.value,
-          countRef.current?.value,
-          sellOrBuyingRef.current?.value
-        );
-        setRecoilRerenderList((prev) => {
-          return prev + 1;
-        });
+        const confirm = window.confirm("이대로 저장 하시겠습니까?");
+        if (confirm === true) {
+          await AddMyStock(
+            stateRecoilStockList.itmsNm,
+            priceRef.current.value,
+            countRef.current.value,
+            sellOrBuyingRef.current?.value,
+            stateRecoilStockList.hipr,
+            stateRecoilStockList.lopr
+          );
+          setRecoilRerenderList((prev) => {
+            return !prev;
+          });
+          return [(priceRef.current.value = ""), (countRef.current.value = "")];
+        }
       } else {
         alert("고가와 저가 사이의 값만 입력 가능합니다");
+        return [(priceRef.current.value = ""), (countRef.current.value = "")];
       }
     } else {
       alert("가격과 수량을 모두 입력해주십시오");
     }
   };
-
   return (
-    <div>
+    <div className={styles.mainCalc}>
       <SearchBar />
-      <p>종목명 : {stateRecoilStockList.itmsNm}</p>
-      <p>시장 분류 : {stateRecoilStockList.mrktCtg}</p>
-      <p>고가 : {stateRecoilStockList.hipr}</p>
-      <p>저가 : {stateRecoilStockList.lopr}</p>
-      <p>
-        가격 : <input type="number" ref={priceRef} />
-        / 수량 : <input type="number" ref={countRef} />
-        <select ref={sellOrBuyingRef}>
-          <option value="buying">매매</option>
-          <option value="sell">매도</option>
-        </select>
+      <p className={styles.explainStock}>
+        <span>{stateRecoilStockList.itmsNm}</span> 는 <br />
+        <span>{stateRecoilStockList.mrktCtg}</span> 시장에 있으며 <br />
+        오늘은 <br />
+        <span>{stateRecoilStockList.lopr}</span>원 ~{" "}
+        <span>{stateRecoilStockList.hipr}</span>원 이었습니다.
       </p>
-
-      <button
-        onClick={() => {
-          handleClearInput();
-        }}
-      >
-        지우기
-      </button>
-
-      <button
-        onClick={() => {
-          getMyOnlyOneStock();
-        }}
-      >
-        확인하기
-      </button>
-
-      <button
-        onClick={() => {
-          handleSaveButton();
-        }}
-      >
-        저장하기
-      </button>
+      <div className={styles.sellAndBuying}>
+        <p>
+          <span>가격 : </span>
+          <input type="number" ref={priceRef} />
+        </p>
+        <p>
+          <span>수량 : </span>
+          <input type="number" ref={countRef} />
+        </p>
+        <div>
+          <select ref={sellOrBuyingRef}>
+            <option value="buying">매수</option>
+            <option value="sell">매도</option>
+          </select>
+          <button
+            onClick={() => {
+              handleSaveButton();
+            }}
+          >
+            저장하기
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

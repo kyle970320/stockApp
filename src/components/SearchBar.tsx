@@ -2,29 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import useDebounce from "../hooks/useDebounce";
 import { recommandWord } from "../recoil/atom";
+import styles from "./Layout.module.css";
 import {
   AxiosApiItemQuery,
   AxiosApiLikeItemQuery,
 } from "../service/axios/AxiosApi";
+import { updateDate } from "../utils/convert";
 const SearchBar = () => {
   const [stateRecoilStockList, setRecoilStockList] =
     useRecoilState(recommandWord);
   const [stateSearchValue, setSearchValue] = useState<string>("");
   const [stateRecommandWord, setRecommandWord] = useState<[]>([]);
   const [debounce] = useDebounce(stateSearchValue, 150);
-  const date = new Date();
-  let updateDate = "";
-  if (date.getDate() - 5 <= 9) {
-    updateDate =
-      date.getFullYear() +
-      "" +
-      (date.getMonth() + 1) +
-      "0" +
-      (date.getDate() - 5);
-  } else {
-    updateDate =
-      date.getFullYear() + "" + (date.getMonth() + 1) + (date.getDate() - 3);
-  }
 
   useEffect(() => {
     const myData = async () => {
@@ -51,25 +40,23 @@ const SearchBar = () => {
     setRecoilStockList(word);
   };
   return (
-    <React.Fragment>
-      <div>
-        주식명 :
-        <input
-          type="search"
-          autoComplete="true"
-          autoFocus
-          value={stateSearchValue}
-          // list="searchList"
-          onChange={(e) => {
-            setSearchValue(e.currentTarget.value);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              handleEnterKeyDown();
-            }
-          }}
-        />
-      </div>
+    <div className={styles.searchBar}>
+      <input
+        type="search"
+        autoComplete="true"
+        placeholder="주식명을 입력하세요"
+        autoFocus
+        value={stateSearchValue}
+        // list="searchList"
+        onChange={(e) => {
+          setSearchValue(e.currentTarget.value);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleEnterKeyDown();
+          }
+        }}
+      />
       <ul>
         {stateRecommandWord.length > 0 &&
           stateRecommandWord.map<string>((word: any): any => {
@@ -86,7 +73,7 @@ const SearchBar = () => {
             );
           })}
       </ul>
-    </React.Fragment>
+    </div>
   );
 };
 

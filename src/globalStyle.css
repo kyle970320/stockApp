@@ -6,7 +6,8 @@ body,html{
   font-size: 16px;
 }
 body{
-  background: linear-gradient(45deg, rgba(88,57,191,1) 0%, rgba(97,69,193,1) 10%, rgba(98,72,190,1) 25%, rgba(105,80,190,1) 39%, rgba(110,88,182,1) 52%, rgba(120,100,187,1) 64%, rgba(128,110,189,1) 78%, rgba(136,122,181,1) 92%);
+  /* background: linear-gradient(45deg, rgba(88,57,191,1) 0%, rgba(97,69,193,1) 10%, rgba(98,72,190,1) 25%, rgba(105,80,190,1) 39%, rgba(110,88,182,1) 52%, rgba(120,100,187,1) 64%, rgba(128,110,189,1) 78%, rgba(136,122,181,1) 92%); */
+  background-color: #f0f0f0;
 }
 body *{
   font-family: 'Raleway', sans-serif;

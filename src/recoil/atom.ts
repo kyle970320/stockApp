@@ -5,6 +5,17 @@ interface stockData {
   hipr: string;
   lopr: string;
   isinCd: string;
+  dpr: string;
+  mkp: string;
+  basDt: string;
+  clpr: string;
+  fltRt: string;
+  lstgStCnt: string;
+  mrktTotAmt: string;
+  srtnCd: string;
+  trPrc: string;
+  trqu: string;
+  vs: string;
 }
 const recommandWord = atom({
   key: 'recommandWord',
@@ -12,7 +23,7 @@ const recommandWord = atom({
 });
 const rerenderList = atom({
   key : 'rerenderList',
-  default: 0,
+  default: false,
 })
 
 export {recommandWord, rerenderList}

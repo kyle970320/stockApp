@@ -19,7 +19,7 @@ const Login = () => {
         </figure>
         <div>
           <p>Hello!</p>
-          <p>wellcom to Stock App!</p>
+          <p>wellcom to Stock diary!</p>
           <h2>
             login <span>your account</span>
           </h2>

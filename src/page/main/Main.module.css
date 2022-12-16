@@ -1,7 +1,9 @@
 .mainSection {
+  font-family: "Noto Sans KR", sans-serif;
   display: flex;
   padding: 2rem;
   overflow: hidden;
+  background-color: #fafafa;
 }
 .mainSection > div:nth-child(1) {
   width: 70%;
@@ -11,24 +13,109 @@
 }
 
 .mainList {
+  font-family: "Noto Sans KR", sans-serif;
+  position: relative;
   width: 78%;
+  padding: 0 2rem;
   overflow-y: scroll;
-  background-color: white;
+  background-color: #fafafa;
   border-radius: 15px;
 }
 .mainList ul {
   width: 100%;
   display: flex;
+  margin: 1rem 0;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.mainList ul:first-of-type {
+  position: sticky;
+  border-radius: 0 0 15px 15px;
+  top: 0;
+}
+.mainList ul:nth-of-type(2n + 1) {
+  background-color: #ddd;
 }
 .mainList ul li {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 20%;
-  padding: 1rem;
+  padding: 2rem 1rem;
   font-size: 0.8rem;
-  border-radius: 20px;
+  transition: background-color 0.2s;
 }
-.mainList ul:nth-of-type(2n + 1) {
-  background-color: rgba(217, 207, 244, 0.5);
+.mainList ul li:last-child {
+  border-radius: 0 20px 20px 0;
+}
+
+.mainCalc {
+  font-family: "Noto Sans KR", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+}
+.mainCalc .explainStock {
+  line-height: 200%;
+}
+.mainCalc .explainStock span:nth-of-type(1) {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.mainCalc .explainStock span:nth-of-type(2) {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.mainCalc .explainStock span:nth-of-type(3) {
+  color: red;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.mainCalc .explainStock span:nth-of-type(4) {
+  color: blue;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.mainCalc .sellAndBuying {
+  padding: 1rem;
+  border: 5px solid #7384f3;
+}
+.mainCalc .sellAndBuying span {
+  display: block;
+  margin-bottom: 1rem;
+}
+.mainCalc .sellAndBuying input {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  border: none;
+  border-bottom: 2px solid #7384f3;
+}
+.mainCalc .sellAndBuying input:focus {
+  outline: none;
+}
+.mainCalc .sellAndBuying div {
+  display: flex;
+  justify-content: space-between;
+}
+.mainCalc .sellAndBuying div select {
+  border: none;
+  border-bottom: 2px solid #7384f3;
+}
+.mainCalc .sellAndBuying div select:focus {
+  outline: none;
+}
+.mainCalc .sellAndBuying div button {
+  border: 2px solid #7384f3;
+  background-color: #7384f3;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.25s, color 0.25s;
+}
+.mainCalc .sellAndBuying div button:hover {
+  background-color: white;
+  color: #7384f3;
 }

@@ -1,4 +1,5 @@
 .form {
+  font-family: "Raleway", sans-serif;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -11,12 +12,12 @@
   height: 80%;
   background-color: white;
   border-radius: 20px;
-  font-family: "Raleway", sans-serif;
+  box-shadow: 0 0 10px rgba(black, 0.05);
   label {
     margin-bottom: 1rem;
     font-size: 1.5rem;
     font-weight: 600;
-    color: #544875;
+    color: #7384f3;
   } //label
   input {
     margin-bottom: 1rem;
@@ -25,7 +26,7 @@
     font-size: 1.1rem;
     &:focus {
       outline: none;
-      border-bottom: 2.5px solid rgba(#544875, 0.3);
+      border-bottom: 2.5px solid rgba(#7384f3, 0.3);
     } //input:focus
   } //input
   button {
@@ -33,8 +34,8 @@
     height: 40px;
     margin: 2rem auto;
     border: none;
-    border: 3px solid #5738c0;
-    background-color: #5738c0;
+    border: 3px solid #7384f3;
+    background-color: #7384f3;
     color: white;
     font-size: 1.2rem;
     font-weight: 700;
@@ -42,7 +43,7 @@
     transition: background-color 0.25s, color 0.25s;
     &:hover {
       background-color: white;
-      color: #5738c0;
+      color: #7384f3;
     } //button hover
     &:disabled {
       background-color: #666;
@@ -64,7 +65,7 @@
         margin-left: 10px;
         font-weight: 700;
         text-decoration: none;
-        color: #5738c0;
+        color: #7384f3;
       }
     } //p.login
   } //p

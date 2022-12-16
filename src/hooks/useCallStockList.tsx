@@ -12,6 +12,7 @@ interface myList {
   total: number;
   firstName: string;
   lastName: string;
+  expectRateReturn: number;
 }
 const useCallStockList = (boolean: boolean) => {
   const [stateStockList, setStockList] = useState<Array<myList>>([]);

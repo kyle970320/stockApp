@@ -14,6 +14,8 @@ const MainList = () => {
         <li>누적매도량</li>
         <li>최근 판매가격</li>
         <li>평균 구매단가</li>
+        <li>예상 수익률</li>
+        <li>현재 수익</li>
       </ul>
       {stateStockList &&
         stateStockList.map((listItem) => {
@@ -24,6 +26,28 @@ const MainList = () => {
               <li>{listItem.sellCount}</li>
               <li>{listItem.prevSell}</li>
               <li>{listItem.buyingAverage}</li>
+              <li
+                onMouseOver={(e) => {
+                  if (listItem.expectRateReturn > 0) {
+                    e.currentTarget.style.backgroundColor = `rgba(${"255"}, ${"110"}, ${"110"},${"0.7"})`;
+                  } else {
+                    e.currentTarget.style.backgroundColor = `rgba(${"115"}, ${"132"}, ${"243"},${"0.7"})`;
+                  }
+                }}
+              >
+                {listItem.expectRateReturn}%
+              </li>
+              <li
+                onMouseOver={(e) => {
+                  if (listItem.total > 0) {
+                    e.currentTarget.style.backgroundColor = `rgba(${"255"}, ${"110"}, ${"110"},${"0.7"})`;
+                  } else {
+                    e.currentTarget.style.backgroundColor = `rgba(${"115"}, ${"132"}, ${"243"},${"0.7"})`;
+                  }
+                }}
+              >
+                {listItem.total / 10000}만원
+              </li>
             </ul>
           );
         })}

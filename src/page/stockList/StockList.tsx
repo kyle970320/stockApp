@@ -3,27 +3,72 @@ import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import SearchBar from "../../components/SearchBar";
 import { recommandWord } from "../../recoil/atom";
+import { convertUnit } from "../../utils/convert";
+import { colorStyle } from "../../utils/inlineStyle";
+import styles from "./StockList.module.css";
 
 const StockList = () => {
   const [stateRecoilStockList] = useRecoilState(recommandWord);
   return (
-    <React.Fragment>
+    <section className={styles.stockList}>
       <SearchBar />
       {stateRecoilStockList.itmsNm && (
-        <div>
-          <p>종목명 : {stateRecoilStockList.itmsNm}</p>
-          <p>시장 구분 : {stateRecoilStockList.mrktCtg}</p>
-          <p>고가 : {stateRecoilStockList.hipr}</p>
-          <p>저가 : {stateRecoilStockList.lopr}</p>
-          <Link
-            to={`/mystock/stocklist/:${stateRecoilStockList.isinCd}`}
-            state={stateRecoilStockList}
-          >
-            {stateRecoilStockList.itmsNm} 더 자세히 보기
-          </Link>
+        <div className={styles.stockListDetailDiv}>
+          <dl>
+            <dt>종목명</dt>
+            <dd>{stateRecoilStockList.itmsNm}</dd>
+            <dt>ISIN코드</dt>
+            <dd>{stateRecoilStockList.isinCd}</dd>
+            <dt>시장 구분</dt>
+            <dd>{stateRecoilStockList.mrktCtg}</dd>
+            <dt>고가</dt>
+            <dd>{stateRecoilStockList.hipr}</dd>
+            <dt>저가</dt>
+            <dd>{stateRecoilStockList.lopr}</dd>
+            <dt>종가</dt>
+            <dd>{stateRecoilStockList.clpr}</dd>
+          </dl>
+          <dl>
+            <dt>금일 등락</dt>
+            <dd
+              style={
+                Number(stateRecoilStockList.vs) < 0
+                  ? colorStyle.minus
+                  : colorStyle.plus
+              }
+            >
+              {stateRecoilStockList.vs}
+            </dd>
+            <dt>금일 등락률</dt>
+            <dd
+              style={
+                Number(stateRecoilStockList.fltRt) < 0
+                  ? colorStyle.minus
+                  : colorStyle.plus
+              }
+            >
+              {stateRecoilStockList.fltRt}%
+            </dd>
+            <dt>거래량</dt>
+            <dd>{convertUnit(stateRecoilStockList.trqu)}회</dd>
+            <dt>거래대금</dt>
+            <dd>{convertUnit(stateRecoilStockList.trPrc)}원</dd>
+            <dt>상장주식수</dt>
+            <dd>{convertUnit(stateRecoilStockList.lstgStCnt)}원</dd>
+            <dt>시가 총액</dt>
+            <dd>{convertUnit(stateRecoilStockList.mrktTotAmt)}원</dd>
+          </dl>
         </div>
       )}
-    </React.Fragment>
+      {stateRecoilStockList.itmsNm && (
+        <Link
+          to={`/mystock/stocklist/:${stateRecoilStockList.isinCd}`}
+          state={stateRecoilStockList}
+        >
+          {stateRecoilStockList.itmsNm} 차트보기
+        </Link>
+      )}
+    </section>
   );
 };
 

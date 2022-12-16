@@ -36,8 +36,8 @@ const MainChart = () => {
         <Tooltip />
         <Legend />
         <ReferenceLine y={0} stroke="#000" />
-        <Bar dataKey="누적구매액" fill="#8884d8" />
-        <Bar dataKey="누적판매액" fill="#82ca9d" />
+        <Bar dataKey="누적구매액" fill="lightblue" />
+        <Bar dataKey="누적판매액" fill="lightcoral" />
       </BarChart>
     </ResponsiveContainer>
   );

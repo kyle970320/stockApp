@@ -7,6 +7,8 @@ const AddMyStock = async(
   stockPrice:string|undefined,
   stockCount:string|undefined,
   stockSellOrBuying:string|undefined,
+  hipr:string,
+  lopr:string
   )=>{
     const topLevelCol = window.localStorage.getItem('userUID');
     const db = getFirestore();
@@ -19,6 +21,7 @@ const AddMyStock = async(
     const totalPriceData:number = Number(docSnap.data()?.total);
     const allBuyingPriceData:number = Number(docSnap.data()?.누적구매액);
     const allSellPriceData:number = Number(docSnap.data()?.누적판매액);
+    const expectRateReturnData:number = Number(docSnap.data()?.expectRateReturn);
     let buyingAveragePrice:number = Number(docSnap.data()?.buyingAverage);
     let buyingCountReduce:number = Number(docSnap.data()?.buyingCount);
     let sellAveragePrice = Number(docSnap.data()?.sellAverage);
@@ -27,6 +30,7 @@ const AddMyStock = async(
     let totalPrice:number = Number(docSnap.data()?.total);
     let allBuyingPrice:number = Number(docSnap.data()?.누적구매액);
     let allSellPrice:number = Number(docSnap.data()?.누적판매액);
+    let expectRateOfReturn:number = Number(docSnap.data()?.expectRateReturn);
     if (docSnap.exists()) {
       if(stockSellOrBuying === 'buying'){
         const prevBuyingValue = buyingAverageData * buyingCountData;
@@ -34,7 +38,8 @@ const AddMyStock = async(
         buyingAveragePrice = Math.ceil((prevBuyingValue + nextBuyingValue) / (buyingCountData + Number(stockCount)));
         buyingCountReduce = buyingCountData + Number(stockCount);
         allBuyingPrice = -(buyingAveragePrice*buyingCountReduce);
-        totalPrice = allBuyingPriceData + allSellPriceData - nextBuyingValue;
+        totalPrice = -allBuyingPriceData + allSellPriceData - nextBuyingValue;
+        expectRateOfReturn = Number(((((((Number(hipr)+Number(lopr))/2)*buyingCountReduce)-(buyingAveragePrice*buyingCountReduce))/(buyingAveragePrice*buyingCountReduce))*100).toFixed(2))
       } else if(stockSellOrBuying === 'sell'){
         if(buyingCountData >= (sellCountData + Number(stockCount))){
           const prevSellValue = sellAverageData * sellCountData;
@@ -43,7 +48,8 @@ const AddMyStock = async(
           sellCountReduce = sellCountData + Number(stockCount);
           prevSellPrice = Number(stockPrice);
           allSellPrice = sellAveragePrice * sellCountReduce;
-          totalPrice = allBuyingPriceData + allSellPriceData + nextSellValue;
+          totalPrice = -allBuyingPriceData + allSellPriceData + nextSellValue;
+          expectRateOfReturn = Number(((((((Number(hipr)+Number(lopr))/2)*buyingCountReduce)-(buyingAveragePrice*buyingCountReduce))/(buyingAveragePrice*buyingCountReduce))*100).toFixed(2))
         } else{
           return alert('보유수량 보다 많은 양을 매도하실 수 없습니다');
         }
@@ -58,6 +64,7 @@ const AddMyStock = async(
         totalPrice = -(buyingAveragePrice*buyingCountReduce);
         allBuyingPrice = totalPrice;
         allSellPrice = 0;
+        expectRateOfReturn = Number(((((((Number(hipr)+Number(lopr))/2)*buyingCountReduce)-(buyingAveragePrice*buyingCountReduce))/(buyingAveragePrice*buyingCountReduce))*100).toFixed(2))
       }else if(stockSellOrBuying === 'sell'){
        return alert('보유량이 없습니다');
       }
@@ -72,6 +79,7 @@ const AddMyStock = async(
     total: totalPrice,
     누적구매액: Math.abs(allBuyingPrice),
     누적판매액: allSellPrice,
+    expectRateReturn: expectRateOfReturn
   });
 }
 
