@@ -1,29 +1,12 @@
-import {atom} from 'recoil'
-interface stockData {
-  itmsNm: string;
-  mrktCtg: string;
-  hipr: string;
-  lopr: string;
-  isinCd: string;
-  dpr: string;
-  mkp: string;
-  basDt: string;
-  clpr: string;
-  fltRt: string;
-  lstgStCnt: string;
-  mrktTotAmt: string;
-  srtnCd: string;
-  trPrc: string;
-  trqu: string;
-  vs: string;
-}
+import { atom } from "recoil";
+import { stockData } from "../types/interface";
 const recommandWord = atom({
-  key: 'recommandWord',
-  default: <stockData>{},
+  key: "recommandWord",
+  default: {} as stockData,
 });
 const rerenderList = atom({
-  key : 'rerenderList',
+  key: "rerenderList",
   default: false,
-})
+});
 
-export {recommandWord, rerenderList}
+export { recommandWord, rerenderList };

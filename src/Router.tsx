@@ -12,11 +12,11 @@ import Login from "./page/auth/Login/Login";
 import Sign from "./page/auth/sign/Sign";
 import Main from "./page/main/Main";
 import StockList from "./page/stockList/StockList";
-import StockListDetail from "./page/stockList/StockListDetail";
 import { analytics } from "./service/firebase/fbInit";
 import { Reset } from "styled-reset";
 import "./globalStyle.css";
 import MainList from "./page/main/MainList";
+import StockNews from "./page/stockNews/StockNews";
 const firebase = analytics;
 
 const Router = () => {
@@ -41,7 +41,7 @@ const Router = () => {
             <Route path="main" element={<Main />} />
             <Route path="assets" element={<MainList />} />
             <Route path="stocklist" element={<StockList />} />
-            <Route path="stocklist/:stockid" element={<StockListDetail />} />
+            <Route path="stocknews" element={<StockNews />} />
           </Route>
         </Routes>
       </RecoilRoot>

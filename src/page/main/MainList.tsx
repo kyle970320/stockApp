@@ -4,6 +4,8 @@ import { getMyStocks } from "../../service/getStore";
 import { rerenderList } from "../../recoil/atom";
 import useCallStockList from "../../hooks/useCallStockList";
 import styles from "./Main.module.css";
+import { convertUnit } from "../../utils/convert";
+import Loading from "../../components/Loding";
 const MainList = () => {
   const [stateStockList] = useCallStockList(false);
   return (
@@ -46,7 +48,7 @@ const MainList = () => {
                   }
                 }}
               >
-                {listItem.total / 10000}만원
+                {convertUnit(String(listItem.total))}원
               </li>
             </ul>
           );

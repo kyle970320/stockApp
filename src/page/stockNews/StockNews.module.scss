@@ -1,0 +1,47 @@
+.news {
+  font-family: "Noto Sans KR", sans-serif;
+  font-family: "Raleway", sans-serif;
+  overflow-y: scroll;
+  width: 78%;
+  padding: 2rem;
+  background-color: #fafafa;
+  box-shadow: 0 0 10px rgb(0 0 0 / 5%);
+  border-radius: 15px;
+  > input {
+    width: 100%;
+    border: 5px solid #7384f3;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+  details {
+    background-color: #ededed;
+    padding-bottom: 1rem;
+    summary {
+      width: 100%;
+      margin: 0.5rem;
+      padding: 1rem;
+      font-weight: bold;
+      font-size: 1.5rem;
+      &::marker {
+        font-size: 0;
+      } //marker
+    } //summary
+    p {
+      margin: 1rem;
+      padding: 1rem;
+      font-size: 1.1rem;
+      line-height: 200%;
+      border: 2px solid black;
+    } //p
+    a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: #7384f4;
+    }
+  } //details
+  .lodingContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+  }
+} //news

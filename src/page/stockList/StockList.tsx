@@ -22,11 +22,11 @@ const StockList = () => {
             <dt>시장 구분</dt>
             <dd>{stateRecoilStockList.mrktCtg}</dd>
             <dt>고가</dt>
-            <dd>{stateRecoilStockList.hipr}</dd>
+            <dd>{convertUnit(stateRecoilStockList.hipr)}원</dd>
             <dt>저가</dt>
-            <dd>{stateRecoilStockList.lopr}</dd>
+            <dd>{convertUnit(stateRecoilStockList.lopr)}원</dd>
             <dt>종가</dt>
-            <dd>{stateRecoilStockList.clpr}</dd>
+            <dd>{convertUnit(stateRecoilStockList.clpr)}원</dd>
           </dl>
           <dl>
             <dt>금일 등락</dt>
@@ -59,14 +59,6 @@ const StockList = () => {
             <dd>{convertUnit(stateRecoilStockList.mrktTotAmt)}원</dd>
           </dl>
         </div>
-      )}
-      {stateRecoilStockList.itmsNm && (
-        <Link
-          to={`/mystock/stocklist/:${stateRecoilStockList.isinCd}`}
-          state={stateRecoilStockList}
-        >
-          {stateRecoilStockList.itmsNm} 차트보기
-        </Link>
       )}
     </section>
   );

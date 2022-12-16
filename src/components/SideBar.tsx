@@ -1,6 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { SlChart, SlUserFollowing, SlDiamond } from "react-icons/sl";
+import {
+  SlChart,
+  SlUserFollowing,
+  SlDiamond,
+  SlBookOpen,
+} from "react-icons/sl";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router";
 import { activeStyle } from "../utils/inlineStyle";
@@ -39,6 +43,17 @@ const SideBar = () => {
       >
         <SlChart />
         주식 상세정보
+      </NavLink>
+      <NavLink
+        to={"/mystock/stocknews"}
+        style={
+          locate.pathname.includes("stocknews")
+            ? activeStyle.active
+            : activeStyle.nonActive
+        }
+      >
+        <SlBookOpen />
+        최신 뉴스
       </NavLink>
     </aside>
   );
