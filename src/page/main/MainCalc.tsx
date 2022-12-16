@@ -1,13 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import SearchBar from "../../components/SearchBar";
 import { recommandWord, rerenderList } from "../../recoil/atom";
 import styles from "./Main.module.css";
-import {
-  AddMyStock,
-  getMyOnlyOneStock,
-  getMyStocks,
-} from "../../service/getStore";
+import { AddMyStock } from "../../service/getStore";
 
 const MainCalc = () => {
   const stateRecoilStockList = useRecoilValue(recommandWord);

@@ -1,13 +1,12 @@
-import React from "react";
+import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router";
+import { activeStyle } from "../utils/inlineStyle";
 import {
   SlChart,
   SlUserFollowing,
   SlDiamond,
   SlBookOpen,
 } from "react-icons/sl";
-import { NavLink } from "react-router-dom";
-import { useLocation } from "react-router";
-import { activeStyle } from "../utils/inlineStyle";
 const SideBar = () => {
   const locate = useLocation();
   return (

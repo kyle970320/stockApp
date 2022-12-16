@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import SearchBar from "../../components/SearchBar";
 import { recommandWord } from "../../recoil/atom";

@@ -1,11 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
-import { getMyStocks } from "../../service/getStore";
-import { rerenderList } from "../../recoil/atom";
 import useCallStockList from "../../hooks/useCallStockList";
 import styles from "./Main.module.css";
 import { convertUnit } from "../../utils/convert";
-import Loading from "../../components/Loding";
 const MainList = () => {
   const [stateStockList] = useCallStockList(false);
   return (

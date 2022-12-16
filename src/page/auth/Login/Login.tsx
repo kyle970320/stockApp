@@ -30,7 +30,6 @@ const Login = () => {
               type="email"
               onChange={(e) => {
                 setLoginEmail(e.currentTarget.value);
-                console.log(e.currentTarget.value);
               }}
             />
             <label htmlFor="loginPassword">password</label>
@@ -39,7 +38,6 @@ const Login = () => {
               type="password"
               onChange={(e) => {
                 setLoginPassword(e.currentTarget.value);
-                console.log(e.currentTarget.value);
               }}
             />
             <button onClick={handleLogin}>log in</button>

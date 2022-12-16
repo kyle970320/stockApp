@@ -9,7 +9,7 @@ const customAxios = axios.create({
 });
 const AxiosApiItemQuery = async (word: string, date: string) => {
   const apiData = await axios.get(
-    `https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=g4VOdRGXDRyXBvs%2FYEYpLGMnX%2BOQE1wfNEJipSDMlweYUrYOwCO8hdh261HHPkFDbvSkVyRE388W0q84%2BfPZHw%3D%3D&numOfRows=10&pageNo=1&resultType=json&basDt=${date}&itmsNm=${word}`,
+    `https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=${process.env.REACT_APP_STOCK_KEY}&numOfRows=10&pageNo=1&resultType=json&basDt=${date}&itmsNm=${word}`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -21,7 +21,7 @@ const AxiosApiItemQuery = async (word: string, date: string) => {
 
 const AxiosApiLikeItemQuery = async (word: string, date: string) => {
   const apiData = await axios.get(
-    `https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=g4VOdRGXDRyXBvs%2FYEYpLGMnX%2BOQE1wfNEJipSDMlweYUrYOwCO8hdh261HHPkFDbvSkVyRE388W0q84%2BfPZHw%3D%3D&numOfRows=10&pageNo=1&resultType=json&basDt=${date}&likeItmsNm=${word}`,
+    `https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=${process.env.REACT_APP_STOCK_KEY}&numOfRows=10&pageNo=1&resultType=json&basDt=${date}&likeItmsNm=${word}`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ const AxiosApiLikeItemQuery = async (word: string, date: string) => {
 
 const AxiosApiLikeDateQuery = async (word: string, date: string) => {
   const apiData = await axios.get(
-    `https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=g4VOdRGXDRyXBvs%2FYEYpLGMnX%2BOQE1wfNEJipSDMlweYUrYOwCO8hdh261HHPkFDbvSkVyRE388W0q84%2BfPZHw%3D%3D&numOfRows=31&pageNo=1&resultType=json&likeBasDt=${date}&itmsNm=${word}`,
+    `https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=${process.env.REACT_APP_STOCK_KEY}&numOfRows=31&pageNo=1&resultType=json&likeBasDt=${date}&itmsNm=${word}`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -43,8 +43,8 @@ const AxiosApiLikeDateQuery = async (word: string, date: string) => {
   return apiData;
 };
 const AxiosApiNews = async (utf8: string) => {
-  const id = "ZeA7avlaUaZEWPS8ANP0";
-  const password = "zAeGCWaHni";
+  const id = process.env.REACT_APP_NAVER_ID;
+  const password = process.env.REACT_APP_NAVER_KEY;
   const apiData = await axios.get(
     `/api/v1/search/news.json?query=${utf8}&display=15&start=1&sort=date`,
     {

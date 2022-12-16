@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import useCallStockList from "../hooks/useCallStockList";
 import useLogin from "../hooks/useLogin";
 import styles from "./Layout.module.css";
