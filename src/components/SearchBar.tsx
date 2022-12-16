@@ -8,6 +8,7 @@ import {
   AxiosApiLikeItemQuery,
 } from "../service/axios/AxiosApi";
 import { updateDate } from "../utils/convert";
+import { stockData } from "../types/interface";
 const SearchBar = () => {
   const [stateRecoilStockList, setRecoilStockList] =
     useRecoilState(recommandWord);
@@ -30,9 +31,16 @@ const SearchBar = () => {
   const handleEnterKeyDown = async () => {
     const result = await AxiosApiItemQuery(stateSearchValue, updateDate);
     const resultItem = result.data.response.body?.items.item;
-    setRecommandWord([]);
-    setSearchValue("");
-    setRecoilStockList(resultItem[0]);
+    if (resultItem.length >= 1) {
+      setRecommandWord([]);
+      setSearchValue("");
+      setRecoilStockList(resultItem[0]);
+    } else {
+      alert("일치하는 종목이 없습니다.");
+      setRecommandWord([]);
+      setSearchValue("");
+      setRecoilStockList({} as stockData);
+    }
   };
   const handleSearchWordClick = (word: any) => {
     setRecommandWord([]);
