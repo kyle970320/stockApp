@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, setDoc, getDocs, getFirestore, query, orderBy, limit, updateDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, setDoc, getDocs, getFirestore, query, orderBy, limit, updateDoc, deleteDoc } from 'firebase/firestore';
 
 const AddMyStock = async (
   stockName: string,
@@ -164,4 +164,10 @@ const returnStock = async (stockName: string) => {
   await updateDoc(docRef, prevData);
 };
 
-export { AddMyStock, getMyStocks, getOrderList, returnStock };
+//삭제
+const deleteStock = async (stockName: string) => {
+  const topLevelCol = window.sessionStorage.getItem('userUID');
+  const db = getFirestore();
+  await deleteDoc(doc(db, `${topLevelCol}`, `${stockName}`));
+};
+export { AddMyStock, getMyStocks, getOrderList, returnStock, deleteStock };

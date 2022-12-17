@@ -3,7 +3,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import SearchBar from '../../components/SearchBar';
 import { recommandWord, rerenderList } from '../../recoil/atom';
 import styles from './Main.module.css';
-import { AddMyStock, returnStock } from '../../service/getStore';
+import { AddMyStock, deleteStock, returnStock } from '../../service/getStore';
 import { async } from 'q';
 
 const MainCalc = () => {
@@ -46,7 +46,11 @@ const MainCalc = () => {
     if (window.confirm('직전값으로 되돌리시겠습니까?')) {
       const prevData = JSON.parse(window.sessionStorage.getItem('PrevPrice') || '{}');
       if (window.sessionStorage.getItem('PrevPrice')) {
-        returnStock(prevData.stockName);
+        if (prevData.total !== null) {
+          returnStock(prevData.stockName);
+        } else {
+          deleteStock(prevData.stockName);
+        }
         setRecoilRerenderList((prev) => {
           return !prev;
         });
