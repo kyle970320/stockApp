@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import SearchBar from "../../components/SearchBar";
 import { recommandWord, rerenderList } from "../../recoil/atom";
@@ -8,11 +8,13 @@ import { AddMyStock } from "../../service/getStore";
 const MainCalc = () => {
   const stateRecoilStockList = useRecoilValue(recommandWord);
   const setRecoilRerenderList = useSetRecoilState(rerenderList);
-
   const priceRef = useRef<HTMLInputElement>(null);
   const countRef = useRef<HTMLInputElement>(null);
   const sellOrBuyingRef = useRef<HTMLSelectElement>(null);
-
+  const [stateCalcInput, setCalcInput] = useState<string>("");
+  useEffect(() => {
+    setCalcInput(stateRecoilStockList.lopr);
+  }, [stateRecoilStockList.lopr]);
   const handleSaveButton = async () => {
     if (priceRef.current?.value && countRef.current?.value) {
       if (
@@ -58,7 +60,10 @@ const MainCalc = () => {
           <input
             type="number"
             placeholder="오늘 값들만 입력 가능"
-            defaultValue={stateRecoilStockList.lopr}
+            value={stateCalcInput}
+            onChange={(e) => {
+              setCalcInput(e.currentTarget.value);
+            }}
             ref={priceRef}
           />
         </p>

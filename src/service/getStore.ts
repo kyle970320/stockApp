@@ -15,7 +15,7 @@ const AddMyStock = async (
   hipr: string,
   lopr: string
 ) => {
-  const topLevelCol = window.localStorage.getItem("userUID");
+  const topLevelCol = window.sessionStorage.getItem("userUID");
   const db = getFirestore();
   const docRef = doc(db, `${topLevelCol}`, `${stockName}`);
   const docSnap = await getDoc(docRef);
@@ -118,7 +118,7 @@ const AddMyStock = async (
 
 //컬렉션 전체 문서 가져오기
 const getMyStocks = async () => {
-  const topLevelCol = window.localStorage.getItem("userUID");
+  const topLevelCol = window.sessionStorage.getItem("userUID");
   const db = getFirestore();
   let result: any[] = [];
   const querySnapshot = await getDocs(collection(db, `${topLevelCol}`));

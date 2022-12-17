@@ -14,7 +14,7 @@ const useLogin = () => {
       signInWithEmailAndPassword(auth, email, password)
         .then((result) => {
           const user = result.user;
-          window.localStorage.setItem("userUID", user.uid);
+          window.sessionStorage.setItem("userUID", user.uid);
           alert("로그인이 성공하였습니다. 메인 페이지로 이동합니다.");
           navigate("/mystock/main");
           resolve(user);
@@ -33,7 +33,7 @@ const useLogin = () => {
       const auth = getAuth();
       signOut(auth)
         .then(() => {
-          window.localStorage.removeItem("userUID");
+          window.sessionStorage.removeItem("userUID");
           alert("로그아웃 되었습니다");
           navigate("/");
           resolve("logout");
