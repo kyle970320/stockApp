@@ -17,16 +17,20 @@ import { Reset } from "styled-reset";
 import "./globalStyle.css";
 import MainList from "./page/main/MainList";
 import StockNews from "./page/stockNews/StockNews";
+import Error404 from "./components/Error404";
 const firebase = analytics;
 
 const Router = () => {
-  const localStorageUserUID = window.localStorage.getItem("userUID");
+  const sessionStorageUserUID = window.sessionStorage.getItem("userUID");
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
-    if (localStorageUserUID && location.pathname === "/") {
+    if (sessionStorageUserUID && location.pathname === "/") {
       navigate("/mystock/main");
-    } else if (!localStorageUserUID && location.pathname.includes("mystock")) {
+    } else if (
+      !sessionStorageUserUID &&
+      location.pathname.includes("mystock")
+    ) {
       navigate("/");
     }
   }, [location.pathname]);
@@ -35,6 +39,7 @@ const Router = () => {
       <Reset />
       <RecoilRoot>
         <Routes>
+          <Route path="*" element={<Error404 />} />
           <Route path="/" element={<Login />} />
           <Route path="/sign" element={<Sign />} />
           <Route path="/mystock" element={<Layout />}>
