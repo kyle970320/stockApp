@@ -1,4 +1,10 @@
 [[redirects]]
+from = "/proxy/*"
+to = "hhttps://apis.data.go.kr/1160100/service/:splat"
+status = 200
+force = true
+
+[[redirects]]
 from = "/api/*"
 to = "https://openapi.naver.com/:splat"
 status = 200
