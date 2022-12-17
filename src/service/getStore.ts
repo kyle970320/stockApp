@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, setDoc, getDocs, getFirestore } from 'firebase/firestore';
+import { collection, doc, getDoc, setDoc, getDocs, getFirestore, query, orderBy, limit, updateDoc } from 'firebase/firestore';
 
 const AddMyStock = async (
   stockName: string,
@@ -20,11 +20,18 @@ const AddMyStock = async (
   const allBuyingPriceData: number = Number(docSnap.data()?.누적구매액);
   const allSellPriceData: number = Number(docSnap.data()?.누적판매액);
   const expectRateReturnData: number = Number(docSnap.data()?.expectRateReturn);
+  const prevSellPriceData: number = Number(docSnap.data()?.prevSellPrice);
+  const prevSellCountData: number = Number(docSnap.data()?.prevSellCount);
+  const prevBuyingPriceData: number = Number(docSnap.data()?.prevBuyingPrice);
+  const prevBuyingCountData: number = Number(docSnap.data()?.prevBuyingCount);
   let buyingAveragePrice: number = Number(docSnap.data()?.buyingAverage);
   let buyingCountReduce: number = Number(docSnap.data()?.buyingCount);
   let sellAveragePrice = Number(docSnap.data()?.sellAverage);
   let sellCountReduce: number = Number(docSnap.data()?.sellCount);
-  let prevSellPrice: number = Number(docSnap.data()?.prevSell);
+  let prevSellPrice: number = Number(docSnap.data()?.prevSellPrice);
+  let prevSellCount: number = Number(docSnap.data()?.prevSellCount);
+  let prevBuyingPrice: number = Number(docSnap.data()?.prevBuyingPrice);
+  let prevBuyingCount: number = Number(docSnap.data()?.prevBuyingCount);
   let totalPrice: number = Number(docSnap.data()?.total);
   let allBuyingPrice: number = Number(docSnap.data()?.누적구매액);
   let allSellPrice: number = Number(docSnap.data()?.누적판매액);
@@ -35,6 +42,10 @@ const AddMyStock = async (
       const nextBuyingValue = Number(stockPrice) * Number(stockCount);
       buyingAveragePrice = Math.ceil((prevBuyingValue + nextBuyingValue) / (buyingCountData + Number(stockCount)));
       buyingCountReduce = buyingCountData + Number(stockCount);
+      prevBuyingPrice = Number(stockPrice);
+      prevBuyingCount = Number(stockCount);
+      prevSellPrice = prevSellPriceData;
+      prevSellCount = prevSellCountData;
       allBuyingPrice = -(buyingAveragePrice * buyingCountReduce);
       totalPrice = -allBuyingPriceData + allSellPriceData - nextBuyingValue;
       expectRateOfReturn = Number(
@@ -50,6 +61,9 @@ const AddMyStock = async (
         sellAveragePrice = Math.ceil((prevSellValue + nextSellValue) / (sellCountData + Number(stockCount)));
         sellCountReduce = sellCountData + Number(stockCount);
         prevSellPrice = Number(stockPrice);
+        prevSellCount = Number(stockCount);
+        prevBuyingPrice = prevBuyingPriceData;
+        prevBuyingCount = prevBuyingCountData;
         allSellPrice = sellAveragePrice * sellCountReduce;
         totalPrice = -allBuyingPriceData + allSellPriceData + nextSellValue;
         expectRateOfReturn = Number(
@@ -68,6 +82,9 @@ const AddMyStock = async (
       buyingCountReduce = Number(stockCount);
       sellCountReduce = 0;
       prevSellPrice = 0;
+      prevSellCount = 0;
+      prevBuyingPrice = Number(stockPrice);
+      prevBuyingCount = Number(stockCount);
       sellAveragePrice = 0;
       totalPrice = -(buyingAveragePrice * buyingCountReduce);
       allBuyingPrice = totalPrice;
@@ -82,13 +99,32 @@ const AddMyStock = async (
       return alert('보유량이 없습니다');
     }
   }
+  const prevSessions = {
+    stockName,
+    buyingAverage: buyingAverageData,
+    buyingCount: buyingCountData,
+    sellAverage: sellAverageData,
+    sellCount: sellCountData,
+    prevSellPrice: prevSellPriceData,
+    precSellCount: prevSellCountData,
+    prevBuyingPrice: prevBuyingPriceData,
+    prevBuyingCount: prevBuyingCountData,
+    total: totalPriceData,
+    누적구매액: allBuyingPriceData,
+    누적판매액: allSellPriceData,
+    expectRateReturn: expectRateReturnData,
+  };
+  window.sessionStorage.setItem('PrevPrice', JSON.stringify(prevSessions));
   await setDoc(doc(db, `${topLevelCol}`, `${stockName}`), {
     stockName,
     buyingAverage: buyingAveragePrice,
     buyingCount: buyingCountReduce,
     sellAverage: sellAveragePrice,
     sellCount: sellCountReduce,
-    prevSell: prevSellPrice,
+    prevSellPrice: prevSellPrice,
+    prevSellCount: prevSellCount,
+    prevBuyingPrice: prevBuyingPrice,
+    prevBuyingCount: prevBuyingCount,
     total: totalPrice,
     누적구매액: Math.abs(allBuyingPrice),
     누적판매액: allSellPrice,
@@ -108,4 +144,24 @@ const getMyStocks = async () => {
   return result;
 };
 
-export { AddMyStock, getMyStocks };
+//정렬
+const getOrderList = async () => {
+  const db = getFirestore();
+  const q = query(collection(db, `${window.sessionStorage.getItem('userUID')}`), orderBy('누적구매액', 'desc'), limit(8)); //오름차순
+  let result: any[] = [];
+  const querySnapshot = await getDocs(q);
+  querySnapshot.docs.forEach((doc) => {
+    result.push(doc.data());
+  });
+};
+
+//이전 값 되돌리기
+const returnStock = async (stockName: string) => {
+  const topLevelCol = window.sessionStorage.getItem('userUID');
+  const db = getFirestore();
+  const docRef = doc(db, `${topLevelCol}`, `${stockName}`);
+  const prevData = JSON.parse(window.sessionStorage.getItem('PrevPrice') || '{}');
+  await updateDoc(docRef, prevData);
+};
+
+export { AddMyStock, getMyStocks, getOrderList, returnStock };
