@@ -7,7 +7,7 @@ const SideBar = () => {
   return (
     <aside>
       <NavLink to={'/mystock/main'} style={locate.pathname.includes('main') ? activeStyle.active : activeStyle.nonActive}>
-        <SlUserFollowing />내 주식 정보
+        <SlUserFollowing />내 주식정보
       </NavLink>
       <NavLink to={'/mystock/assets'} style={locate.pathname.includes('assets') ? activeStyle.active : activeStyle.nonActive}>
         <SlDiamond />
