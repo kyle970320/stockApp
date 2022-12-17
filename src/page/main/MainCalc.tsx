@@ -55,7 +55,12 @@ const MainCalc = () => {
       <div className={styles.sellAndBuying}>
         <p>
           <span>가격 : </span>
-          <input type="number" ref={priceRef} />
+          <input
+            type="number"
+            placeholder="오늘 값들만 입력 가능"
+            defaultValue={stateRecoilStockList.lopr}
+            ref={priceRef}
+          />
         </p>
         <p>
           <span>수량 : </span>
