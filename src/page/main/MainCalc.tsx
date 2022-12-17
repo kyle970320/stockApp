@@ -48,8 +48,10 @@ const MainCalc = () => {
       if (window.sessionStorage.getItem('PrevPrice')) {
         if (prevData.total !== null) {
           returnStock(prevData.stockName);
+          window.sessionStorage.removeItem('PrevPrice');
         } else {
           deleteStock(prevData.stockName);
+          window.sessionStorage.removeItem('PrevPrice');
         }
         setRecoilRerenderList((prev) => {
           return !prev;

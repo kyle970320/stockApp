@@ -20,7 +20,7 @@ const useCallStockList = (boolean: boolean) => {
 
       const filterMyStockListCopy = [...filterMyStockList];
       const orderList = filterMyStockListCopy;
-      orderList.length > 7 ? orderList.splice(6, orderList.length - 1) : orderList;
+      orderList.length > 6 ? orderList.splice(6, orderList.length - 1) : orderList;
       setOrderList(orderList);
       setStockList(filterMyStockList);
     };
