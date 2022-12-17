@@ -47,10 +47,10 @@ const MainCalc = () => {
       const prevData = JSON.parse(window.sessionStorage.getItem('PrevPrice') || '{}');
       if (window.sessionStorage.getItem('PrevPrice')) {
         if (prevData.total !== null) {
-          returnStock(prevData.stockName);
+          await returnStock(prevData.stockName);
           window.sessionStorage.removeItem('PrevPrice');
         } else {
-          deleteStock(prevData.stockName);
+          await deleteStock(prevData.stockName);
           window.sessionStorage.removeItem('PrevPrice');
         }
         setRecoilRerenderList((prev) => {
@@ -92,7 +92,13 @@ const MainCalc = () => {
             <option value="buying">매수</option>
             <option value="sell">매도</option>
           </select>
-          <button onClick={handleToPrev}>되돌리기</button>
+          <button
+            onClick={() => {
+              handleToPrev();
+            }}
+          >
+            되돌리기
+          </button>
           <button
             onClick={() => {
               handleSaveButton();
