@@ -1,17 +1,13 @@
-import React, { PureComponent, useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
-import { rerenderList } from '../../../recoil/atom';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine, ResponsiveContainer } from 'recharts';
 import useCallStockList from '../../../hooks/useCallStockList';
 const MainChart = () => {
-  const stateRecoilRerenderList = useRecoilValue(rerenderList);
-  const [stateStockList] = useCallStockList(false);
+  const [, stateOrderList] = useCallStockList(false);
   return (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart
         width={500}
         height={300}
-        data={stateStockList}
+        data={stateOrderList}
         margin={{
           top: 5,
           right: 30,

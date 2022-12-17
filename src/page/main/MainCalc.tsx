@@ -3,7 +3,8 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import SearchBar from '../../components/SearchBar';
 import { recommandWord, rerenderList } from '../../recoil/atom';
 import styles from './Main.module.css';
-import { AddMyStock } from '../../service/getStore';
+import { AddMyStock, returnStock } from '../../service/getStore';
+import { async } from 'q';
 
 const MainCalc = () => {
   const stateRecoilStockList = useRecoilValue(recommandWord);
@@ -41,6 +42,19 @@ const MainCalc = () => {
       alert('가격과 수량을 모두 입력해주십시오');
     }
   };
+  const handleToPrev = async () => {
+    if (window.confirm('직전값으로 되돌리시겠습니까?')) {
+      const prevData = JSON.parse(window.sessionStorage.getItem('PrevPrice') || '{}');
+      if (window.sessionStorage.getItem('PrevPrice')) {
+        returnStock(prevData.stockName);
+        setRecoilRerenderList((prev) => {
+          return !prev;
+        });
+      } else {
+        alert('이전 값이 존재하지 않습니다');
+      }
+    }
+  };
   return (
     <div className={styles.mainCalc}>
       <SearchBar />
@@ -72,6 +86,7 @@ const MainCalc = () => {
             <option value="buying">매수</option>
             <option value="sell">매도</option>
           </select>
+          <button onClick={handleToPrev}>되돌리기</button>
           <button
             onClick={() => {
               handleSaveButton();

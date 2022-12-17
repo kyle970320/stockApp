@@ -9,6 +9,8 @@ export interface myList {
   firstName: string;
   lastName: string;
   expectRateReturn: number;
+  누적구매액: number;
+  누적판매액: number;
 }
 
 export interface stockData {
