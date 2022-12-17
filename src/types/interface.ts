@@ -4,11 +4,11 @@ export interface myList {
   buyingCount: number;
   sellAverage: number;
   sellCount: number;
-  prevSell: number;
   total: number;
   firstName: string;
   lastName: string;
   expectRateReturn: number;
+  prevSellPrice: number;
   누적구매액: number;
   누적판매액: number;
 }

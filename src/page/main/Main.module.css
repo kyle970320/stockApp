@@ -12,7 +12,7 @@
   width: 30%;
 }
 
-.mainList {
+.MyStockDetail {
   font-family: "Noto Sans KR", sans-serif;
   position: relative;
   width: 78%;
@@ -21,7 +21,7 @@
   background-color: #fafafa;
   border-radius: 15px;
 }
-.mainList ul {
+.MyStockDetail ul {
   width: 100%;
   display: flex;
   margin: 1rem 0;
@@ -29,15 +29,15 @@
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.mainList ul:first-of-type {
+.MyStockDetail ul:first-of-type {
   position: sticky;
   border-radius: 0 0 15px 15px;
   top: 0;
 }
-.mainList ul:nth-of-type(2n + 1) {
+.MyStockDetail ul:nth-of-type(2n + 1) {
   background-color: #ddd;
 }
-.mainList ul li {
+.MyStockDetail ul li {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,7 +46,7 @@
   font-size: 0.8rem;
   transition: background-color 0.2s;
 }
-.mainList ul li:last-child {
+.MyStockDetail ul li:last-child {
   border-radius: 0 20px 20px 0;
 }
 

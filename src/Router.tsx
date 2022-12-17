@@ -9,7 +9,7 @@ import StockList from './page/stockList/StockList';
 import { analytics } from './service/firebase/fbInit';
 import { Reset } from 'styled-reset';
 import './globalStyle.css';
-import MainList from './page/main/MainList';
+import MyStockDetail from './page/myStockDetail/MyStockDetail';
 import StockNews from './page/stockNews/StockNews';
 import Error404 from './components/Error404';
 const firebase = analytics;
@@ -35,7 +35,7 @@ const Router = () => {
           <Route path="/sign" element={<Sign />} />
           <Route path="/mystock" element={<Layout />}>
             <Route path="main" element={<Main />} />
-            <Route path="assets" element={<MainList />} />
+            <Route path="assets" element={<MyStockDetail />} />
             <Route path="stocklist" element={<StockList />} />
             <Route path="stocknews" element={<StockNews />} />
           </Route>

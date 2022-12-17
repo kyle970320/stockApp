@@ -1,10 +1,10 @@
 import useCallStockList from '../../hooks/useCallStockList';
-import styles from './Main.module.css';
+import styles from '../main/Main.module.css';
 import { convertUnit } from '../../utils/convert';
-const MainList = () => {
+const MyStockDetail = () => {
   const [stateStockList] = useCallStockList(false);
   return (
-    <div className={styles.mainList}>
+    <div className={styles.MyStockDetail}>
       <ul>
         <li>종목명</li>
         <li>누적매수량</li>
@@ -21,7 +21,7 @@ const MainList = () => {
               <li>{listItem.stockName}</li>
               <li>{listItem.buyingCount}</li>
               <li>{listItem.sellCount}</li>
-              <li>{listItem.prevSell}</li>
+              <li>{listItem.prevSellPrice}</li>
               <li>{listItem.buyingAverage}</li>
               <li
                 onMouseOver={(e) => {
@@ -52,4 +52,4 @@ const MainList = () => {
   );
 };
 
-export default MainList;
+export default MyStockDetail;

@@ -65,7 +65,8 @@ firebase 로 구현
        ┗ MainChart.tsx
      ┣ Main.tsx
      ┣ MainCalc.tsx
-     ┗ MainList.tsx
+    ┣ 📁 myStockDetail
+      ┗ MyStockDetail.tsx
    ┣ StockList.tsx
    ┗ StockNews.tsx
  ┣ 📁 recoil
