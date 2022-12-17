@@ -1,19 +1,19 @@
 const colorStyle = {
   plus: {
-    color: `rgba(${"255"}, ${"110"}, ${"110"},${"1"})`,
+    color: `rgba(${'255'}, ${'110'}, ${'110'},${'1'})`,
   },
   minus: {
-    color: `rgba(${"115"}, ${"132"}, ${"243"},${"1"})`,
+    color: `rgba(${'115'}, ${'132'}, ${'243'},${'1'})`,
   },
 };
 const activeStyle = {
   active: {
-    backgroundColor: "#7384f3",
-    color: "white",
+    backgroundColor: '#7384f3',
+    color: 'white',
   },
   nonActive: {
-    backgroundColor: "#fafafa",
+    backgroundColor: '#fafafa',
   },
 };
 
-export{colorStyle, activeStyle}
+export { colorStyle, activeStyle };
