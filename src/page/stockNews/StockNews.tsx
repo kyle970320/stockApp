@@ -12,7 +12,7 @@ interface newsData {
   title: string;
 }
 const StockNews = () => {
-  const [stateNewsLoading, setNewsLoading] = useState<Boolean>(false);
+  const [stateNewsLoading, setNewsLoading] = useState<boolean>(false);
   const [stateStockNews, setStockNews] = useState<newsData[]>([]);
   const [stateNewsInput, handleChange, setNewsInput] = useInput('주식');
   const [debounce] = useDebounce(stateNewsInput, 200);
