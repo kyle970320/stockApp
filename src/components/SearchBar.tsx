@@ -20,7 +20,7 @@ const SearchBar = () => {
     const myData = async () => {
       if (debounce.length > 0) {
         const result = await AxiosApiLikeItemQuery(debounce, updateDate);
-        const resultItem = result.data.response.body.items.item;
+        const resultItem = result.data.response.body?.items.item;
         setRecommandWord(resultItem);
       } else {
         setRecommandWord([]);
