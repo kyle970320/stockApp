@@ -35,9 +35,11 @@ firebase 로 구현
 
 <br>
 
-### 배포 링크
+### 배포 링크 & 설명 링크
 
 [배포링크 바로가기](https://master--stock-diary.netlify.app/)
+[설명링크 바로가기](https://rounded-grey-2bb.notion.site/Stock-Diary-0bb84fa26b234defbe0c9ed75491e15a)
+이미 데이터가 들어있는 값이 궁금하시다면 test@naver.com/ 123456789로 로그인하면 확인 가능
 
 <br/>
 
