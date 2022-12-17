@@ -3,18 +3,20 @@ import { Link } from 'react-router-dom';
 import useInput from '../../../hooks/useInput';
 import useRegister from '../../../hooks/useRegister';
 import useValidate from '../../../hooks/useValidate';
-import { RegisterInFirebase } from '../../../service/firebase/fbAuth';
 import styles from './Sign.module.css';
 const Login = () => {
   const [RegisterInFirebase] = useRegister();
   const [stateSignEmail, changeEmail, setSignEmail] = useInput('');
   const [stateSignPassword, changePassword, setSignPassword] = useInput('');
+  const [stateSignPasswordCheck, changePasswordCheck, setSignPasswordCheck] = useInput('');
   const [stateFirstName, changeFirstName, setFirstName] = useInput('');
   const [stateLastName, changeLastName, setSignLastName] = useInput('');
   const {
     validateUser: lockButton,
     validateEmail: validateEmail,
     validatePassword: validatePassword,
+    validatePasswordCheck: validatePasswordCheck,
+    passwordCheckError: statePasswordCheckError,
     emailError: stateEmailError,
     passwordError: statePasswordError,
     isAbled: stateDisabled,
@@ -30,11 +32,10 @@ const Login = () => {
     setSignLastName('');
   };
   useEffect(() => {
-    lockButton(stateSignEmail, stateSignPassword, stateFirstName, stateLastName);
-
+    lockButton(stateSignEmail, stateSignPassword, stateSignPasswordCheck, stateFirstName, stateLastName);
     validateEmail(stateSignEmail);
-
     validatePassword(stateSignPassword);
+    validatePasswordCheck(stateSignPassword, stateSignPasswordCheck);
   });
   return (
     <form className={styles.form}>
@@ -60,6 +61,16 @@ const Login = () => {
         }}
       />
       <p className={styles.error}>{statePasswordError && stateSignPassword && statePasswordError}</p>
+      <label htmlFor="signPasswordCheck">Password Check</label>
+      <input
+        id="signPasswordCheck"
+        type="password"
+        value={stateSignPasswordCheck}
+        onChange={(e) => {
+          changePasswordCheck(e);
+        }}
+      />
+      <p className={styles.error}>{stateSignPassword && stateSignPasswordCheck && statePasswordCheckError}</p>
       <label htmlFor="signLastName">Last Name</label>
       <input
         id="signLastName"
