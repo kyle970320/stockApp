@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
-import useDebounce from "../hooks/useDebounce";
-import { recommandWord } from "../recoil/atom";
-import styles from "./Layout.module.css";
-import {
-  AxiosApiItemQuery,
-  AxiosApiLikeItemQuery,
-} from "../service/axios/AxiosApi";
-import { updateDate } from "../utils/convert";
-import { stockData } from "../types/interface";
+import React, { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import useDebounce from '../hooks/useDebounce';
+import { recommandWord } from '../recoil/atom';
+import styles from './Layout.module.css';
+import { AxiosApiItemQuery, AxiosApiLikeItemQuery } from '../service/axios/AxiosApi';
+import { updateDate } from '../utils/convert';
+import { stockData } from '../types/interface';
 const SearchBar = () => {
-  const [stateRecoilStockList, setRecoilStockList] =
-    useRecoilState(recommandWord);
-  const [stateSearchValue, setSearchValue] = useState<string>("");
+  const [stateRecoilStockList, setRecoilStockList] = useRecoilState(recommandWord);
+  const [stateSearchValue, setSearchValue] = useState<string>('');
   const [stateRecommandWord, setRecommandWord] = useState<[]>([]);
   const [debounce] = useDebounce(stateSearchValue, 150);
 
@@ -33,18 +29,18 @@ const SearchBar = () => {
     const resultItem = result.data.response.body?.items.item;
     if (resultItem.length >= 1) {
       setRecommandWord([]);
-      setSearchValue("");
+      setSearchValue('');
       setRecoilStockList(resultItem[0]);
     } else {
-      alert("일치하는 종목이 없습니다.");
+      alert('일치하는 종목이 없습니다.');
       setRecommandWord([]);
-      setSearchValue("");
+      setSearchValue('');
       setRecoilStockList({} as stockData);
     }
   };
   const handleSearchWordClick = (word: any) => {
     setRecommandWord([]);
-    setSearchValue("");
+    setSearchValue('');
     setRecoilStockList(word);
   };
   return (
@@ -60,7 +56,7 @@ const SearchBar = () => {
           setSearchValue(e.currentTarget.value);
         }}
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === 'Enter') {
             handleEnterKeyDown();
           }
         }}

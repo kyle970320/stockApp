@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import useLogin from "../../../hooks/useLogin";
-import styles from "./Login.module.css";
-import loginImage from "../../../img/login.png";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import useLogin from '../../../hooks/useLogin';
+import styles from './Login.module.css';
+import loginImage from '../../../img/login.png';
 const Login = () => {
-  const [stateLoginEmail, setLoginEmail] = useState<string>("");
-  const [stateLoginPassword, setLoginPassword] = useState<string>("");
+  const [stateLoginEmail, setLoginEmail] = useState<string>('');
+  const [stateLoginPassword, setLoginPassword] = useState<string>('');
   const { Login: LoginFirebase } = useLogin();
   const handleLogin = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ const Login = () => {
               }}
             />
             <button onClick={handleLogin}>log in</button>
-            <Link to={"/sign"}>sign in</Link>
+            <Link to={'/sign'}>sign in</Link>
           </form>
         </div>
       </div>

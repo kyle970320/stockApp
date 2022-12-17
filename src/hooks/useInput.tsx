@@ -1,16 +1,6 @@
-import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useState,
-  ChangeEvent,
-} from "react";
+import { Dispatch, SetStateAction, useCallback, useState, ChangeEvent } from 'react';
 
-type ReturnTypes = [
-  string,
-  (e: React.ChangeEvent<HTMLInputElement>) => void,
-  React.Dispatch<React.SetStateAction<string>>
-];
+type ReturnTypes = [string, (e: React.ChangeEvent<HTMLInputElement>) => void, React.Dispatch<React.SetStateAction<string>>];
 
 const useInput = (initialData: string): ReturnTypes => {
   const [value, setValue] = useState(initialData);

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { AxiosApiNews } from "../../service/axios/AxiosApi";
-import styles from "./StockNews.module.css";
-import useInput from "../../hooks/useInput";
-import useDebounce from "../../hooks/useDebounce";
-import Loading from "../../components/Loding";
+import React, { useEffect, useState } from 'react';
+import { AxiosApiNews } from '../../service/axios/AxiosApi';
+import styles from './StockNews.module.css';
+import useInput from '../../hooks/useInput';
+import useDebounce from '../../hooks/useDebounce';
+import Loading from '../../components/Loding';
 interface newsData {
   description: string;
   link: string;
@@ -14,7 +14,7 @@ interface newsData {
 const StockNews = () => {
   const [stateNewsLoading, setNewsLoading] = useState<Boolean>(false);
   const [stateStockNews, setStockNews] = useState<newsData[]>([]);
-  const [stateNewsInput, handleChange, setNewsInput] = useInput("주식");
+  const [stateNewsInput, handleChange, setNewsInput] = useInput('주식');
   const [debounce] = useDebounce(stateNewsInput, 200);
   useEffect(() => {
     const newsData = async () => {

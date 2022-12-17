@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 const errorMaessage = [
-  ["wrong-password", "비밀번호를 잘못 입력하셨습니다"],
-  ["invalid-email", "이메일 형식이 아닙니다"],
-  ["user-not-found", "가입되지 않은 이메일입니다"],
+  ['wrong-password', '비밀번호를 잘못 입력하셨습니다'],
+  ['invalid-email', '이메일 형식이 아닙니다'],
+  ['user-not-found', '가입되지 않은 이메일입니다'],
 ];
 
 const useLogin = () => {
@@ -14,9 +14,9 @@ const useLogin = () => {
       signInWithEmailAndPassword(auth, email, password)
         .then((result) => {
           const user = result.user;
-          window.sessionStorage.setItem("userUID", user.uid);
-          alert("로그인이 성공하였습니다. 메인 페이지로 이동합니다.");
-          navigate("/mystock/main");
+          window.sessionStorage.setItem('userUID', user.uid);
+          alert('로그인이 성공하였습니다. 메인 페이지로 이동합니다.');
+          navigate('/mystock/main');
           resolve(user);
         })
         .catch((error) => {
@@ -33,10 +33,10 @@ const useLogin = () => {
       const auth = getAuth();
       signOut(auth)
         .then(() => {
-          window.sessionStorage.removeItem("userUID");
-          alert("로그아웃 되었습니다");
-          navigate("/");
-          resolve("logout");
+          window.sessionStorage.removeItem('userUID');
+          alert('로그아웃 되었습니다');
+          navigate('/');
+          resolve('logout');
         })
         .catch((error) => {
           alert(error.message);

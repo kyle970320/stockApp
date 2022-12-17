@@ -1,20 +1,20 @@
-const { createProxyMiddleware } = require("http-proxy-middleware");
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function (app) {
   app.use(
-    "/api",
+    '/api',
     createProxyMiddleware({
-      target: "https://openapi.naver.com",
+      target: 'https://openapi.naver.com',
       changeOrigin: true,
       pathRewrite: {
-        "^/api": "",
+        '^/api': '',
       },
-    })
+    }),
   );
   app.use(
-    createProxyMiddleware("/proxy", {
-      target: "https://apis.data.go.kr/1160100/service",
+    createProxyMiddleware('/proxy', {
+      target: 'https://apis.data.go.kr/1160100/service',
       changeOrigin: true,
-    })
+    }),
   );
 };

@@ -1,6 +1,6 @@
-import useCallStockList from "../../hooks/useCallStockList";
-import styles from "./Main.module.css";
-import { convertUnit } from "../../utils/convert";
+import useCallStockList from '../../hooks/useCallStockList';
+import styles from './Main.module.css';
+import { convertUnit } from '../../utils/convert';
 const MainList = () => {
   const [stateStockList] = useCallStockList(false);
   return (
@@ -26,9 +26,9 @@ const MainList = () => {
               <li
                 onMouseOver={(e) => {
                   if (listItem.expectRateReturn > 0) {
-                    e.currentTarget.style.backgroundColor = `rgba(${"255"}, ${"110"}, ${"110"},${"0.7"})`;
+                    e.currentTarget.style.backgroundColor = `rgba(${'255'}, ${'110'}, ${'110'},${'0.7'})`;
                   } else {
-                    e.currentTarget.style.backgroundColor = `rgba(${"115"}, ${"132"}, ${"243"},${"0.7"})`;
+                    e.currentTarget.style.backgroundColor = `rgba(${'115'}, ${'132'}, ${'243'},${'0.7'})`;
                   }
                 }}
               >
@@ -37,9 +37,9 @@ const MainList = () => {
               <li
                 onMouseOver={(e) => {
                   if (listItem.total > 0) {
-                    e.currentTarget.style.backgroundColor = `rgba(${"255"}, ${"110"}, ${"110"},${"0.7"})`;
+                    e.currentTarget.style.backgroundColor = `rgba(${'255'}, ${'110'}, ${'110'},${'0.7'})`;
                   } else {
-                    e.currentTarget.style.backgroundColor = `rgba(${"115"}, ${"132"}, ${"243"},${"0.7"})`;
+                    e.currentTarget.style.backgroundColor = `rgba(${'115'}, ${'132'}, ${'243'},${'0.7'})`;
                   }
                 }}
               >

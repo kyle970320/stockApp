@@ -1,9 +1,4 @@
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 interface SystemError {
   code: string;
@@ -17,11 +12,11 @@ const RegisterInFirebase = (email: string, password: string) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         const user = result.user;
-        alert("회원가입이 완료되었습니다.");
+        alert('회원가입이 완료되었습니다.');
         resolve(user);
       })
       .catch((error: SystemError) => {
-        alert("안됨");
+        alert('안됨');
       });
   });
 };

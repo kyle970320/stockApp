@@ -1,16 +1,16 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import useInput from "../../../hooks/useInput";
-import useRegister from "../../../hooks/useRegister";
-import useValidate from "../../../hooks/useValidate";
-import { RegisterInFirebase } from "../../../service/firebase/fbAuth";
-import styles from "./Sign.module.css";
+import React, { useRef, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import useInput from '../../../hooks/useInput';
+import useRegister from '../../../hooks/useRegister';
+import useValidate from '../../../hooks/useValidate';
+import { RegisterInFirebase } from '../../../service/firebase/fbAuth';
+import styles from './Sign.module.css';
 const Login = () => {
   const [RegisterInFirebase] = useRegister();
-  const [stateSignEmail, changeEmail, setSignEmail] = useInput("");
-  const [stateSignPassword, changePassword, setSignPassword] = useInput("");
-  const [stateFirstName, changeFirstName, setFirstName] = useInput("");
-  const [stateLastName, changeLastName, setSignLastName] = useInput("");
+  const [stateSignEmail, changeEmail, setSignEmail] = useInput('');
+  const [stateSignPassword, changePassword, setSignPassword] = useInput('');
+  const [stateFirstName, changeFirstName, setFirstName] = useInput('');
+  const [stateLastName, changeLastName, setSignLastName] = useInput('');
   const {
     validateUser: lockButton,
     validateEmail: validateEmail,
@@ -23,24 +23,14 @@ const Login = () => {
   // const passwordRef = useRef<HTMLInputElement>(null);
   const handleSign = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    RegisterInFirebase(
-      stateSignEmail,
-      stateSignPassword,
-      stateFirstName,
-      stateLastName
-    );
-    setSignEmail("");
-    setSignPassword("");
-    setFirstName("");
-    setSignLastName("");
+    RegisterInFirebase(stateSignEmail, stateSignPassword, stateFirstName, stateLastName);
+    setSignEmail('');
+    setSignPassword('');
+    setFirstName('');
+    setSignLastName('');
   };
   useEffect(() => {
-    lockButton(
-      stateSignEmail,
-      stateSignPassword,
-      stateFirstName,
-      stateLastName
-    );
+    lockButton(stateSignEmail, stateSignPassword, stateFirstName, stateLastName);
 
     validateEmail(stateSignEmail);
 
@@ -58,9 +48,7 @@ const Login = () => {
           changeEmail(e);
         }}
       />
-      <p className={styles.error}>
-        {stateEmailError && stateSignEmail && stateEmailError}
-      </p>
+      <p className={styles.error}>{stateEmailError && stateSignEmail && stateEmailError}</p>
       <label htmlFor="signPassword">Password</label>
       <input
         id="signPassword"
@@ -71,9 +59,7 @@ const Login = () => {
           changePassword(e);
         }}
       />
-      <p className={styles.error}>
-        {statePasswordError && stateSignPassword && statePasswordError}
-      </p>
+      <p className={styles.error}>{statePasswordError && stateSignPassword && statePasswordError}</p>
       <label htmlFor="signLastName">Last Name</label>
       <input
         id="signLastName"
