@@ -33,7 +33,7 @@ const AxiosApiLikeItemQuery = async (word: string, date: string) => {
 
 const AxiosApiLikeDateQuery = async (word: string, date: string) => {
   const apiData = await axios.get(
-    `https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=${process.env.REACT_APP_STOCK_KEY}&numOfRows=31&pageNo=1&resultType=json&likeBasDt=${date}&itmsNm=${word}`,
+    `/proxy/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=${process.env.REACT_APP_STOCK_KEY}&numOfRows=31&pageNo=1&resultType=json&likeBasDt=${date}&itmsNm=${word}`,
     {
       headers: {
         "Content-Type": "application/json",

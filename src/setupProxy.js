@@ -11,4 +11,10 @@ module.exports = function (app) {
       },
     })
   );
+  app.use(
+    createProxyMiddleware("/proxy", {
+      target: "https://apis.data.go.kr/1160100/service",
+      changeOrigin: true,
+    })
+  );
 };
