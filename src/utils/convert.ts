@@ -24,8 +24,10 @@ export const convertUnit = (unit: string) => {
 
 const date = new Date();
 export let updateDate = '';
-if (date.getDate() - 4 <= 9) {
-  updateDate = date.getFullYear() + '' + (date.getMonth() + 1) + '0' + (date.getDate() - 4);
+if (date.getDate() - 7 <= 9) {
+  updateDate = date.getFullYear() + '' + (date.getMonth() + 1) + '0' + (date.getDate() - 7);
+} else if (date.getDate() - 7 <= 0) {
+  updateDate = date.getFullYear() + '' + date.getMonth() + (date.getDate() - 7);
 } else {
-  updateDate = date.getFullYear() + '' + (date.getMonth() + 1) + (date.getDate() - 4);
+  updateDate = date.getFullYear() + '' + (date.getMonth() + 1) + (date.getDate() - 7);
 }

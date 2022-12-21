@@ -11,7 +11,6 @@ const SearchBar = () => {
   const [stateSearchValue, setSearchValue] = useState<string>('');
   const [stateRecommandWord, setRecommandWord] = useState<[]>([]);
   const [debounce] = useDebounce(stateSearchValue, 150);
-
   useEffect(() => {
     const myData = async () => {
       if (debounce.length > 0) {
@@ -51,7 +50,6 @@ const SearchBar = () => {
         placeholder="주식명을 입력하세요"
         autoFocus
         value={stateSearchValue}
-        // list="searchList"
         onChange={(e) => {
           setSearchValue(e.currentTarget.value);
         }}
