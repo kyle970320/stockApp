@@ -23,11 +23,43 @@ export const convertUnit = (unit: string) => {
 };
 
 const date = new Date();
+const isWeekend = date.getDay();
+const isNewYear = date.getMonth();
 export let updateDate = '';
-if (date.getDate() - 7 <= 9) {
-  updateDate = date.getFullYear() + '' + (date.getMonth() + 1) + '0' + (date.getDate() - 7);
-} else if (date.getDate() - 7 <= 0) {
-  updateDate = date.getFullYear() + '' + date.getMonth() + (date.getDate() - 7);
+if (isNewYear !== 0) {
+  if (isWeekend !== 0 && isWeekend !== 6) {
+    if (date.getDate() - 7 <= 9 && date.getDate() - 7 >= 0) {
+      updateDate = date.getFullYear() + '' + (date.getMonth() + 1) + '0' + (date.getDate() - 7);
+    } else if (date.getDate() - 7 <= 0) {
+      updateDate = date.getFullYear() + '' + date.getMonth() + (date.getDate() - 7);
+    } else {
+      updateDate = date.getFullYear() + '' + (date.getMonth() + 1) + (date.getDate() - 7);
+    }
+  } else {
+    if (date.getDate() - 10 <= 9 && date.getDate() - 10 >= 0) {
+      updateDate = date.getFullYear() + '' + (date.getMonth() + 1) + '0' + (date.getDate() - 10);
+    } else if (date.getDate() - 10 <= 0) {
+      updateDate = date.getFullYear() + '' + date.getMonth() + (date.getDate() - 10);
+    } else {
+      updateDate = date.getFullYear() + '' + (date.getMonth() + 1) + (date.getDate() - 10);
+    }
+  }
 } else {
-  updateDate = date.getFullYear() + '' + (date.getMonth() + 1) + (date.getDate() - 7);
+  if (isWeekend !== 0 && isWeekend !== 6) {
+    if (date.getDate() - 7 <= 9 && date.getDate() - 7 >= 0) {
+      updateDate = date.getFullYear() + '' + (date.getMonth() + 1) + '0' + (date.getDate() - 7);
+    } else if (date.getDate() - 7 <= 0) {
+      updateDate = date.getFullYear() + '' + '12' + (date.getDate() - 7);
+    } else {
+      updateDate = date.getFullYear() + '' + (date.getMonth() + 1) + (date.getDate() - 7);
+    }
+  } else {
+    if (date.getDate() - 10 <= 9 && date.getDate() - 10 >= 0) {
+      updateDate = date.getFullYear() + '' + (date.getMonth() + 1) + '0' + (date.getDate() - 10);
+    } else if (date.getDate() - 10 <= 0) {
+      updateDate = date.getFullYear() + '' + '12' + (date.getDate() - 10);
+    } else {
+      updateDate = date.getFullYear() + '' + (date.getMonth() + 1) + (date.getDate() - 10);
+    }
+  }
 }
