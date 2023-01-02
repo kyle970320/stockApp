@@ -23,7 +23,7 @@ export const convertUnit = (unit: string) => {
 };
 
 const date = new Date();
-const notWeekendDate = new Date(new Date().setDate(-6));
+const notWeekendDate = new Date(new Date().setDate(-5));
 const weekendDate = new Date(new Date().setDate(-9));
 const isWeekend = date.getDay();
 export let updateDate = '';
